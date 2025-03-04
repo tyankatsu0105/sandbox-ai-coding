@@ -6,4 +6,6 @@ export const Button = ({
 }: {
   onClick: () => void;
   children: React.ReactNode;
-}) => <button onClick={onClick}>{children}</button>;
+}) => {
+  return <button onClick={onClick}>{children}</button>;
+};

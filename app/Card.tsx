@@ -1,23 +1,23 @@
 import React from "react";
 
 type CardProps = {
-  renderHeader?: () => React.ReactNode;
-  renderBody: () => React.ReactNode;
-  renderFooter?: () => React.ReactNode;
+  header: React.ReactNode;
+  body: React.ReactNode;
+  footer: React.ReactNode;
 };
 
-export const Card = ({ renderHeader, renderBody, renderFooter }: CardProps) => {
+export function Card({ header, body, footer }: CardProps) {
   return (
     <div
       style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "16px" }}
     >
       <div style={{ borderBottom: "1px solid #eee", paddingBottom: "8px" }}>
-        {renderHeader && renderHeader()}
+        {header}
       </div>
-      <div style={{ padding: "16px 0" }}>{renderBody()}</div>
+      <div style={{ padding: "16px 0" }}>{body}</div>
       <div style={{ borderTop: "1px solid #eee", paddingTop: "8px" }}>
-        {renderFooter && renderFooter()}
+        {footer}
       </div>
     </div>
   );
-};
+}
