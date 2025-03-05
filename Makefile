@@ -1,2 +1,2 @@
 build-roo-code-config:
-	npx ts-node .cline/build-roo-code-config.ts
+	npx tsx .cline/build-roo-code-config.ts
