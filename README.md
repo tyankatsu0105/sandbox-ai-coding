@@ -9,6 +9,7 @@ GitHub Copilot を検証するはずが、GitHub Copilot の LLM を利用する
 - Model が色々選べる（大半がプレビューで、基本は GPT-4o）
   - Claude3.5 以上を選んだほうが性能がいい
 - Chat と Edits で常に参照するファイルを.github/copilot-instructions.md に指定できる
+  - code completion には反映されない
   - 他のファイルを参照させることができない
     - 例）[docs](hogehoge)ディレクトリ以下のドキュメントを常に参照して
 - 他にも各機能で指示を指定できる
@@ -35,4 +36,4 @@ GitHub Copilot を検証するはずが、GitHub Copilot の LLM を利用する
     - 2025/03 現在、Claude3.7 以上を選択するとエラーになるので、Claude は 3.5 のみ選択できる
 - MCP（Model Context Protocol）がある
 - GitHub Copilot ができないことはほぼない
-  - 唯一は、Copilot でできるコード補完が、Roo Code ではできない
+  - 唯一は、Copilot でできる code completion が、Roo Code ではできない

@@ -154,7 +154,11 @@ async function generateModeDefinitions(
 async function saveModeConfiguration(
   modeDefinitions: ModeDefinition[]
 ): Promise<void> {
-  const config = { customModes: modeDefinitions };
+  const config = {
+    WARNING:
+      "このファイルは.cline/roomodes以下のファイルによって自動生成されます。直接書き込むことを禁止します。",
+    customModes: modeDefinitions,
+  };
   const configContent = JSON.stringify(config, null, 2);
   await writeFile(join(process.cwd(), ".roomodes"), configContent, "utf-8");
 }
