@@ -1,5 +1,7 @@
 {
   "github.copilot.selectedCompletionModel": "gpt-4o-copilot",
+  // https://code.visualstudio.com/docs/copilot/ai-powered-suggestions#_next-edit-suggestions-preview
+  "github.copilot.nextEditSuggestions.enabled": true,
   // https://code.visualstudio.com/docs/copilot/copilot-customization#_define-commit-message-generation-custom-instructions
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
@@ -35,10 +37,9 @@
   ],
   // https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-  // https://code.visualstudio.com/docs/copilot/ai-powered-suggestions#_next-edit-suggestions-preview
-  "github.copilot.nextEditSuggestions.enabled": true,
   // https://code.visualstudio.com/docs/copilot/copilot-customization#_reusable-prompt-files-experimental
   "chat.promptFiles": {
     ".github/copilot-prompts": true
-  }
+  },
+  "github.copilot.chat.reviewSelection.enabled": false
 }

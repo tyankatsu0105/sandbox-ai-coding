@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GitHub Copilot を検証する
 
-## Getting Started
+GitHub Copilot を検証するはずが、GitHub Copilot の LLM を利用することができる Roo Code も検証することにした。
 
-First, run the development server:
+## [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Chat と Edits が使える
+- Agent モードは Visual Studio Code Insiders でプレビュー提供
+- Model が色々選べる（大半がプレビューで、基本は GPT-4o）
+  - Claude3.5 以上を選んだほうが性能がいい
+- Chat と Edits で常に参照するファイルを.github/copilot-instructions.md に指定できる
+  - 他のファイルを参照させることができない
+    - 例）[docs](hogehoge)ディレクトリ以下のドキュメントを常に参照して
+- 他にも各機能で指示を指定できる
+  - コード生成時
+  - コミットメッセージ生成時
+  - VSCode 上での Copilot によるコードレビュー時
+  - テスト時 - `/tests`
+- reusable custom prompt という機能が experiments で提供中
+  - 他のファイル参照することが可能
+  - いろいろな役割をドキュメントで分けられるので、便利
+    - 例）テクニカルライターになりきってドキュメントを作らせる指示を.github/prompts/document-write.prompt.md に書いておいて、Chat や Edit 時にプロンプトを参照させる
+- MCP（Model Context Protocol）がない
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 総括
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- コミットメッセージ生成時に指示出せるのは便利。
+- それ以外は Roo Code でできるしなぁという気持ち
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## [Roo Code](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Copilot と同じ AI エージェントの VSCode 向けの拡張の「Cline」を拡張したもの
+- API Provider と接続する必要があり、要求するたびに金額がかかる....はずだが！！！！
+  - Copilot の有料になっていると、「VS Code LM API」を指定でき、Copilot がつなぐ LM に乗っかることができる
+    - 2025/03 現在、Claude3.7 以上を選択するとエラーになるので、Claude は 3.5 のみ選択できる
+- MCP（Model Context Protocol）がある
+- GitHub Copilot ができないことはほぼない
+  - 唯一は、Copilot でできるコード補完が、Roo Code ではできない
