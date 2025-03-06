@@ -18,7 +18,7 @@
         "read"
       ],
       "roleDefinition": "- [Roo Code]についてなんでも答えます。\n- 必要に応じてhttps://github.com/RooVetGit/Roo-Codeの情報を参照します。",
-      "customInstructions": "### 基本設定\n\n- 中学生にでもわかるように説明してください。"
+      "customInstructions": "### 基本設定\n\n- 中学生にでもわかるように説明してください。\n- 簡潔に説明してください。"
     }
   ]
 }
