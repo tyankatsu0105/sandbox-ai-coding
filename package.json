@@ -9,7 +9,8 @@
     "lint": "next lint",
     "gen:cline-modes": "npx tsx .cline/build-roo-code-modes-config.ts",
     "gen:cline-rules": "npx tsx .cline/build-roo-code-rules-config.ts",
-    "gen:cline": "npm run gen:cline-modes && npm run gen:cline-rules"
+    "gen:cline": "npm run gen:cline-modes && npm run gen:cline-rules",
+    "prepare": "sh scripts/setup-hooks.sh"
   },
   "dependencies": {
     "next": "15.1.7",
