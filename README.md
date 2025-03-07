@@ -34,6 +34,55 @@ GitHub Copilot を検証するはずが、GitHub Copilot の LLM を利用する
 - API Provider と接続する必要があり、要求するたびに金額がかかる....はずだが！！！！
   - Copilot の有料になっていると、「VS Code LM API」を指定でき、Copilot がつなぐ LM に乗っかることができる
     - 2025/03 現在、Claude3.7 以上を選択するとエラーになるので、Claude は 3.5 のみ選択できる
+      - https://github.com/RooVetGit/Roo-Code/issues/1203
 - MCP（Model Context Protocol）がある
+  - おすすめ MCP 構成
+  - node.js や uvx のバージョンによっては動かなくなる可能性あるので、もし動いていなかったら、バージョンを変えてみる
+  - ```json
+    {
+      "mcpServers": {
+        "[git]sandbox-ai-coding": {
+          "command": "uvx",
+          "args": [
+            "mcp-server-git",
+            "--repository",
+            "ローカルの/リポジトリの/パス"
+          ],
+          "env": {
+            "ASDF_UV_VERSION": "0.6.0"
+          }
+        },
+        "[github]": {
+          "command": "npx",
+          "args": ["-y", "@modelcontextprotocol/server-github"],
+          "env": {
+            "ASDF_NODEJS_VERSION": "20.11.1",
+            "GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_GITHUB_TOKEN>"
+          }
+        },
+        "[notion]": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@orbit-logistics/notion-mcp-server",
+            "-t",
+            "<YOUR_NOTION_TOKEN>"
+          ],
+          "env": {
+            "ASDF_NODEJS_VERSION": "20.11.1"
+          }
+        },
+        "[slack]sandbox-ai-collaboration": {
+          "command": "npx",
+          "args": ["-y", "@modelcontextprotocol/server-slack"],
+          "env": {
+            "ASDF_NODEJS_VERSION": "20.11.1",
+            "SLACK_BOT_TOKEN": "<xoxb-から始まるトークン>",
+            "SLACK_TEAM_ID": "<T1234ABCDのようなチームID>"
+          }
+        }
+      }
+    }
+    ```
 - GitHub Copilot ができないことはほぼない
   - 唯一は、Copilot でできる code completion が、Roo Code ではできない
