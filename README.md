@@ -10,3 +10,7 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 ## 考えていること
 
 - 指示書ファイルの生成に ts を使っているが、バックエンドのレポジトリでは ts を使いたくないので、makefile が良いかもしれない。
+
+## 参考
+
+- https://github.com/GreatScottyMac/roo-code-memory-bank/tree/main
