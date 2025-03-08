@@ -1,6 +1,9 @@
 import { readdir, readFile, writeFile } from "fs/promises";
 import { join } from "path";
 
+const WARNING =
+  "このファイルはai-instructions/custom-prompts以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、ai-instructions/custom-prompts以下のファイルを編集し、scriptを実行してください。";
+
 // モードの設定に関する型定義
 interface ModeMetadata {
   name: string;
@@ -148,15 +151,62 @@ async function generateModeDefinitions(
   return definitions;
 }
 
+import { mkdir } from "fs/promises";
+import { existsSync } from "fs";
+
 /**
- * .roomodesファイルを保存する関数
+ * GitHub Copilotのプロンプト変換に関する型と関数
  */
+interface CopilotTransformer {
+  /** プロンプト内容からメタデータ（Front Matter）を削除 */
+  transformContent: (content: string) => string;
+  /** ファイル名をCopilot形式に変換（.mdの前に.promptを追加） */
+  transformFilename: (filename: string) => string;
+}
+
+/** 自動生成ファイルであることを示す警告コメント */
+const AUTO_GENERATED_WARNING = `<!-- ${WARNING} -->\n\n`;
+
+const copilotTransformer: CopilotTransformer = {
+  transformContent: (content: string): string => {
+    const cleanContent = content.replace(/^---[\s\S]*?---\n\n/, "");
+    return AUTO_GENERATED_WARNING + cleanContent;
+  },
+  transformFilename: (filename: string): string => {
+    return filename.replace(/\.md$/, ".prompt.md");
+  },
+};
+
+/**
+ * マークダウンファイルからGitHub Copilot用プロンプトファイルを生成
+ */
+async function generateGitHubCopilotPrompts(
+  directory: string,
+  files: string[]
+): Promise<void> {
+  const copilotPromptsDir = join(process.cwd(), ".github", "prompts");
+
+  if (!existsSync(copilotPromptsDir)) {
+    await mkdir(copilotPromptsDir, { recursive: true });
+  }
+
+  for (const file of files) {
+    const content = await readFile(join(directory, file), "utf-8");
+    const copilotContent = copilotTransformer.transformContent(content);
+    const copilotFilename = copilotTransformer.transformFilename(file);
+    await writeFile(
+      join(copilotPromptsDir, copilotFilename),
+      copilotContent,
+      "utf-8"
+    );
+  }
+}
+
 async function saveModeConfiguration(
   modeDefinitions: ModeDefinition[]
 ): Promise<void> {
   const config = {
-    WARNING:
-      "このファイルは.cline/roomodes以下のファイルによって自動生成されます。直接書き込むことを禁止します。",
+    WARNING,
     customModes: modeDefinitions,
   };
   const configContent = JSON.stringify(config, null, 2);
@@ -168,17 +218,23 @@ async function saveModeConfiguration(
  */
 async function main(): Promise<void> {
   try {
-    const roomodesDir = join(process.cwd(), ".cline", "roomodes");
-    const markdownFiles = await findMarkdownFiles(roomodesDir);
+    const customPromptsDir = join(
+      process.cwd(),
+      "ai-instructions",
+      "custom-prompts"
+    );
+    const markdownFiles = await findMarkdownFiles(customPromptsDir);
     const modeDefinitions = await generateModeDefinitions(
-      roomodesDir,
+      customPromptsDir,
       markdownFiles
     );
     await saveModeConfiguration(modeDefinitions);
+    console.log(".roomodesの生成が完了しました");
 
-    console.log(".roomodesのビルドが完了しました");
+    await generateGitHubCopilotPrompts(customPromptsDir, markdownFiles);
+    console.log("GitHub Copilotプロンプトの生成が完了しました");
   } catch (error) {
-    console.error(".roomodesのビルドに失敗しました:", error);
+    console.error("処理に失敗しました:", error);
     process.exit(1);
   }
 }
