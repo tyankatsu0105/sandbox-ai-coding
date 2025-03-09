@@ -41,17 +41,6 @@ GitHub Copilot を検証するはずが、GitHub Copilot の LLM を利用する
   - ```json
     {
       "mcpServers": {
-        "[git]sandbox-ai-coding": {
-          "command": "uvx",
-          "args": [
-            "mcp-server-git",
-            "--repository",
-            "ローカルの/リポジトリの/パス"
-          ],
-          "env": {
-            "ASDF_UV_VERSION": "0.6.0"
-          }
-        },
         "[github]": {
           "command": "npx",
           "args": ["-y", "@modelcontextprotocol/server-github"],
@@ -72,7 +61,7 @@ GitHub Copilot を検証するはずが、GitHub Copilot の LLM を利用する
             "ASDF_NODEJS_VERSION": "20.11.1"
           }
         },
-        "[slack]sandbox-ai-collaboration": {
+        "[slack]your-slack-workspace-name": {
           "command": "npx",
           "args": ["-y", "@modelcontextprotocol/server-slack"],
           "env": {
