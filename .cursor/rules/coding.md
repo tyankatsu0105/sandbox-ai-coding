@@ -662,3 +662,42 @@ const Price = () => {
   );
 };
 ```
+
+### 引数が 2 つ以上になったときには、一つのオブジェクトにまとめる
+
+- 引数が 2 つ以上になった場合、オブジェクトにまとめて渡すことで、可読性が向上します。
+- また、オブジェクトを使用することで、引数の順序を気にせずに渡すことができるため、柔軟性が増します。
+
+#### 例 - 良い例
+
+```typescript
+function createUser({
+  name,
+  age,
+  email,
+}: {
+  name: string;
+  age: number;
+  email: string;
+}) {
+  return {
+    name,
+    age,
+    email,
+  };
+}
+const user = createUser({ name: "John", age: 30, email: "john@example.com" });
+```
+
+#### 例 - 悪い例
+
+```typescript
+function createUser(name: string, age: number, email: string) {
+  return {
+    name,
+    age,
+    email,
+  };
+}
+const user = createUser({ name: "John", age: 30, email: "john@example.com" });
+```
