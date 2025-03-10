@@ -660,3 +660,31 @@ const Price = () => {
   );
 };
 ```
+
+### コンポーネントの設計ルールを守る
+
+- コンポーネントを新しく作る場合は、以下のコンポーネントの設計を守ってください。
+
+- index.ts
+  - container.tsx のコンポーネントをエクスポートする
+  - 場合によっては、facade.ts の内容をエクスポートする
+- container.tsx
+  - props と facade.ts の処理を利用して、presentational.tsx を呼び出す
+- container.stories.tsx
+  - container.tsx の interaction test を行う
+  - facade の処理と props の処理の統合テストの様な役割を果たす
+- facade.ts
+  - container.tsx が依存する処理を実装する
+  - 処理の内容は react のカスタムフックスでもあれば、その必要がなければただの関数でも良い
+  - 定数を定義することもある
+- facade.test.ts
+  - facade.ts の処理をテストする
+- presentational.tsx
+  - props を受け取って、UI を表示する
+  - 内部でロジックは持たない
+- presentational.stories.tsx
+  - presentational.tsx の UI の確認を行う
+  - interaction test は行わない
+  - props の値を変更して、UI の確認を行う
+
+#### 例
