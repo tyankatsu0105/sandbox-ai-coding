@@ -1,6 +1,7 @@
 import { ComponentProps, memo } from "react";
 
 import { Presentational } from "./presentational";
+import { CLOSE_ICON } from "./facade";
 
 type Props = {
   readonly isOpen: boolean;
@@ -14,6 +15,7 @@ export const Modal = memo(function Modal(props: Props) {
 
   return (
     <Presentational
+      renderCloseIcon={() => <span>{CLOSE_ICON}</span>}
       onClose={props.onClose}
       renderHeader={props.renderHeader}
       renderBody={props.renderBody}

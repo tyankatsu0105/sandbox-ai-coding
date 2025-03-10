@@ -56,6 +56,7 @@ const StyledCloseButton = styled.button`
 
 type Props = {
   readonly onClose: () => void;
+  readonly renderCloseIcon: () => React.ReactNode;
   readonly renderHeader?: () => React.ReactNode;
   readonly renderBody?: () => React.ReactNode;
   readonly renderFooter?: (props: {
@@ -73,7 +74,7 @@ export const Presentational = memo(function Presentational(props: Props) {
           role="button"
           aria-label="Close"
         >
-          &times;
+          {props.renderCloseIcon()}
         </StyledCloseIcon>
         {props.renderHeader && (
           <StyledHeader>{props.renderHeader()}</StyledHeader>

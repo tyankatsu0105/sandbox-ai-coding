@@ -14,3 +14,5 @@ export const useModal = (initialValue?: boolean) => {
     handleClose,
   };
 };
+
+export const CLOSE_ICON = "×";

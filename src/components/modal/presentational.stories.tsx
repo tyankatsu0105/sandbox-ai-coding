@@ -23,5 +23,6 @@ export const Primary: Story = {
     renderFooter: ({ components }) => (
       <components.Button>閉じる</components.Button>
     ),
+    renderCloseIcon: () => <span>×</span>,
   },
 };
