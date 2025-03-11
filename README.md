@@ -57,6 +57,15 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
         "GITHUB_PERSONAL_ACCESS_TOKEN": "<your_github_token>"
       }
     },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "ASDF_NODEJS_VERSION": "20.11.1",
+        "SLACK_BOT_TOKEN": "<xoxb始まりのslack-bot-token>",
+        "SLACK_TEAM_ID": "<T始まりのslack-team-id>"
+      }
+    },
     "notion": {
       "command": "npx",
       "args": [
