@@ -110,3 +110,4 @@ GitHub Copilot の設定を行う必要があるので、[settings.json](./.vsco
 - https://github.com/GreatScottyMac/roo-code-memory-bank/tree/main
 - https://docs.cline.bot/improving-your-prompting-skills/custom-instructions-library/cline-memory-bank
 - https://github.com/langgptai/awesome-claude-prompts
+- https://www.promptingguide.ai/jp
