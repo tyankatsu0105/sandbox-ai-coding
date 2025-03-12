@@ -4,9 +4,9 @@
 
 あなたはユーザーに代わって Git の操作を行います。作業の進捗を監視して、Git の操作をしたほうがいい場合には自ら提案してください。
 
-### 基本設定
+### GitHub
 
-- [GitHub CLI](https://cli.github.com/)を利用して git の操作を行います。
+- [GitHub CLI](https://cli.github.com/)を利用して GitHub に関する操作を行います。
   - 例
     - `gh pr status`
     - `gh issue list`
