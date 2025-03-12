@@ -4,34 +4,64 @@ import { act, renderHook } from "@testing-library/react";
 
 describe("facade", () => {
   describe("useModal", () => {
-    it("初期値はfalseであること", () => {
-      const { result } = renderHook(() => Facade.useModal());
+    describe("初期値が", () => {
+      describe("指定されていない場合", () => {
+        it("isOpenがfalseとなる", () => {
+          // Arrange
+          const { result } = renderHook(() => Facade.useModal());
 
-      expect(result.current.isOpen).toBe(false);
-    });
+          // Act（この場合は初期化時の動作のみ）
 
-    it("初期値をtrueにするとisOpenがtrueになること", () => {
-      const { result } = renderHook(() => Facade.useModal(true));
-
-      expect(result.current.isOpen).toBe(true);
-    });
-    it("handleOpenを呼ぶとisOpenがtrueになること", () => {
-      const { result } = renderHook(() => Facade.useModal(false));
-
-      act(() => {
-        result.current.handleOpen();
+          // Assert
+          expect(result.current.isOpen).toBe(false);
+        });
       });
 
-      expect(result.current.isOpen).toBe(true);
-    });
-    it("handleCloseを呼ぶとisOpenがfalseになること", () => {
-      const { result } = renderHook(() => Facade.useModal(true));
+      describe("trueが指定された場合", () => {
+        it("isOpenがtrueとなる", () => {
+          // Arrange
+          const { result } = renderHook(() => Facade.useModal(true));
 
-      act(() => {
-        result.current.handleClose();
+          // Act（この場合は初期化時の動作のみ）
+
+          // Assert
+          expect(result.current.isOpen).toBe(true);
+        });
       });
+    });
 
-      expect(result.current.isOpen).toBe(false);
+    describe("モーダルが閉じている状態で", () => {
+      describe("handleOpenが呼ばれた場合", () => {
+        it("isOpenがtrueとなる", () => {
+          // Arrange
+          const { result } = renderHook(() => Facade.useModal(false));
+
+          // Act
+          act(() => {
+            result.current.handleOpen();
+          });
+
+          // Assert
+          expect(result.current.isOpen).toBe(true);
+        });
+      });
+    });
+
+    describe("モーダルが開いている状態で", () => {
+      describe("handleCloseが呼ばれた場合", () => {
+        it("isOpenがfalseとなる", () => {
+          // Arrange
+          const { result } = renderHook(() => Facade.useModal(true));
+
+          // Act
+          act(() => {
+            result.current.handleClose();
+          });
+
+          // Assert
+          expect(result.current.isOpen).toBe(false);
+        });
+      });
     });
   });
 });
