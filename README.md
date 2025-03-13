@@ -24,7 +24,10 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 
 1. [サポートされている AI エージェント、エディタ](./ai-instructions/README.md)を利用可能な状態にする
 2. memory bank の概念を AI に持たせる
-   - https://docs.cline.bot/improving-your-prompting-skills/custom-instructions-library/cline-memory-bank
+   - Cline
+     - https://docs.cline.bot/improving-your-prompting-skills/custom-instructions-library/cline-memory-bank
+   - Roo Code
+     - https://github.com/GreatScottyMac/roo-code-memory-bank
    - AI エージェントに、`Update Memory Bank`、または `UMB` と伝え、memory-bank の更新を行わせる
      - 以下のファイルが memory-bank ディレクトリに追加されていることを確認する
        - activeContext.md
@@ -96,6 +99,19 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
   }
 }
 ```
+
+4. Auto Approve の設定を行う
+   - Allowed Auto-Execute Commands が設定できる場合は、以下のコマンドを推奨
+     - npm install
+     - npm ci
+     - npm run
+     - git status
+     - git diff
+     - git log --oneline
+     - gh issue list
+     - gh pr list
+     - git branch -a
+     - git status --short
 
 ### VSCode ユーザー
 
