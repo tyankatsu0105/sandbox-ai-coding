@@ -101,6 +101,7 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 ```
 
 4. Auto Approve の設定を行う
+   - いろいろな権限を管理できる場合は、好きな権限を選択する
    - Allowed Auto-Execute Commands が設定できる場合は、以下のコマンドを推奨
      - npm install
      - npm ci
