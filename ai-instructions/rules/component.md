@@ -14,12 +14,16 @@
 - container.stories.tsx
   - container.tsx の interaction test を行う
   - facade の処理と props の処理の統合テストの様な役割を果たす
+  - presentational.stories.tsx で行う UI の確認は行わない
+    - play 関数を伴うコンポーネントのみ作成する
+  - vitest を起動し、テストがパスするまで確認、修正を繰り返すこと
 - facade.ts
   - container.tsx が依存する処理を実装する
   - 処理の内容は react のカスタムフックスでもあれば、その必要がなければただの関数でも良い
   - 定数を定義することもある
 - facade.test.ts
   - facade.ts の処理をテストする
+  - vitest を起動し、テストがパスするまで確認、修正を繰り返すこと
 - presentational.tsx
   - props を受け取って、UI を表示する
   - 内部でロジックは持たない
