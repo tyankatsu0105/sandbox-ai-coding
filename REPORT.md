@@ -74,4 +74,8 @@ GitHub Copilot を検証するはずが、GitHub Copilot の LLM を利用する
     }
     ```
 - GitHub Copilot ができないことはほぼない
+
   - 唯一は、Copilot でできる code completion が、Roo Code ではできない
+
+- cline と roo code の比較
+  - https://www.reddit.com/r/ChatGPTCoding/comments/1imtvv4/roo_code_vs_cline_feature_comparison/?share_id=6gtcHf8yhS61Oa7GBlGA2&utm_content=2&utm_medium=ios_app&utm_name=ioscss&utm_source=share&utm_term=1
