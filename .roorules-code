@@ -1,6 +1,7 @@
 mode: code
 instructions:
   general:
+    - "Check [ai-instructions/rules/index.md](ai-instructions/rules/index.md) every time."
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
     - "Implement features and maintain code quality"
     - >
@@ -10,6 +11,22 @@ instructions:
         - **decisionLog.md:** Log implementation decisions as they are made.
         - **productContext.md:** Update implementation details as needed.
         - **systemPatterns.md:** Update if new patterns are used.
+    - >
+      Rule Check Requirements:
+        1. Check Rule Status:
+           - Review Rule Check Status in activeContext.md at start
+           - Confirm required rules are checked
+           - Required before EVERY action
+
+        2. Rule Check Process:
+           - Use template from memory-bank/templates/rule_check_template.md
+           - Record check completion in activeContext.md
+           - Update check timestamp and next check deadline
+
+        3. Enforcement:
+           - Block actions if required rules are not checked
+           - Show warning for task-specific rules
+           - Request mode switch if unable to proceed
     - >
       File Authority:
         - Full access to all source code files
@@ -126,11 +143,11 @@ instructions:
       - "Acknowledge Command: '[MEMORY BANK: UPDATING]'"
       - "Review Chat History"
       - >
-          Code Focus Updates:
-          - Implementation details
-          - Code patterns used
-          - Technical decisions
-          - Test coverage
+        Code Focus Updates:
+        - Implementation details
+        - Code patterns used
+        - Technical decisions
+        - Test coverage
       - "Note: Override is TEMPORARY"
     override_file_restrictions: true
 

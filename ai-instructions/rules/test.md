@@ -1,13 +1,13 @@
-## テスト
+# テスト
 
 テストを書く際のルールやガイドラインを以下に示します。これらのルールはテストコードを書く際に重要です。
 
-### 前提
+## 前提
 
 - テストケース名は日本語で書きましょう
   - 日本語が母国語の開発者が多いため
 
-### Type Test
+## Type Test
 
 [expect-type](https://github.com/mmkal/expect-type)を使って型のテストを行う。  
 Jest では expect-type によるアサーションはテストできないので、`tsc`による型チェックによってテストする。
@@ -16,9 +16,9 @@ Jest では expect-type によるアサーションはテストできないの�
 npm run type-check
 ```
 
-### Unit Test
+## Unit Test
 
-#### テストケース名を「何が」「どうなったら」「どうなる」という３つのパーツに分けて書く
+### テストケース名を「何が」「どうなったら」「どうなる」という３つのパーツに分けて書く
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-11-include-3-parts-in-each-test-name
 
@@ -36,7 +36,7 @@ describe("updateUserInformation", () => {
 });
 ```
 
-#### 「Arrange」「Act」「Assert」の AAA パターンを各テストケースに書く
+### 「Arrange」「Act」「Assert」の AAA パターンを各テストケースに書く
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-12-structure-tests-by-the-aaa-pattern
 
@@ -62,34 +62,34 @@ it("", () => {
 });
 ```
 
-#### テスト内は条件分岐を書かずに、テストフレームワークのアサーションを使う
+### テスト内は条件分岐を書かずに、テストフレームワークのアサーションを使う
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F13-describe-expectations-in-a-product-language-use-bdd-style-assertions
 
 - 簡潔なテストケースにし、テストコードの理解を容易にするため。
 
-#### 内部処理をテストしない
+### 内部処理をテストしない
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-14-stick-to-black-box-testing-test-only-public-methods
 
 - 内部処理をテストすると、テストコストが増えるため。
 - 該当の処理に依存している処理のテストさえ通っていれば、内部処理のテストは不要のため。
 
-#### 実際に使われるであろう値を使ってテストする
+### 実際に使われるであろう値を使ってテストする
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F16-dont-foo-use-realistic-input-data
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-17-test-many-input-combinations-using-property-based-testing
 
 - 実際に使われるであろう値に近い値を使ってテストすることで、テストの信頼性を高めるため。
 
-##### プロパティベースのテストが有用な基準
+#### プロパティベースのテストが有用な基準
 
 プロパティベースのテストは、大量の入力データを自動生成し、システムの振る舞いを確認するための効果的な手法だが、基準を紹介する。
 
 - 複雑な処理やアルゴリズムが含まれる場合
   - 入力の組み合わせや境界条件が多い場合に有用
 
-#### スナップショットテストは、「インラインスナップショット（toMatchInlineSnapshot）」のみ利用する
+### スナップショットテストは、「インラインスナップショット（toMatchInlineSnapshot）」のみ利用する
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-18-if-needed-use-only-short--inline-snapshots
 
@@ -98,13 +98,13 @@ https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-18-
   - １スナップショットのコード量が大きいものと比較して、スナップショットが頻繁に壊れなくなるため。
   - 大きすぎてスナップショットが壊れたときに無関心になることを防ぐため。
 
-#### テスト時に利用するデータオブジェクトは、利用するもののみに絞る
+### テスト時に利用するデータオブジェクトは、利用するもののみに絞る
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-19-copy-code-but-only-whats-neccessary
 
 - 大きなデータを引用してテストに利用すると、テストが失敗したときにデータのどこがおかしいのかの原因把握が困難になるため。
 
-#### エラーのテストはテストフレームワークのマッチャーを利用する
+### エラーのテストはテストフレームワークのマッチャーを利用する
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-110-dont-catch-errors-expect-them
 
@@ -112,7 +112,7 @@ https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-110
 - マッチャーによるテストは、テストコードの理解が容易になるため。
 - AAA パターンに準拠が可能なテストコードになるため。
 
-#### 各テストケースを書くまでに、最低２階層作る
+### 各テストケースを書くまでに、最低２階層作る
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-112-categorize-tests-under-at-least-2-levels
 
@@ -142,14 +142,14 @@ describe("sum", () => {
  */
 ```
 
-#### UI とロジックを分離してテストする
+### UI とロジックを分離してテストする
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-31-separate-ui-from-functionality
 
 - ロジックのテストなのか、UI のテストなのかがはっきりしないと、テストコードの理解が困難になるため。
 - UI の詳細をテストしたい場合は、それ用のテストケースを作成すること。
 
-#### DOM の取得では、変更の可能性が低い属性を利用する
+### DOM の取得では、変更の可能性が低い属性を利用する
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-32-query-html-elements-based-on-attributes-that-are-unlikely-to-change
 
@@ -157,21 +157,21 @@ https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-32-
 - testing library を利用する場合、Proprity が紹介されているため、極力それに従うこと。
   - https://testing-library.com/docs/queries/about/#priority
 
-#### 実際の DOM を別のモックに置き換えずに、できる限りそのままテストで取り扱う
+### 実際の DOM を別のモックに置き換えずに、できる限りそのままテストで取り扱う
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-33-whenever-possible-test-with-a-realistic-and-fully-rendered-component
 
 - 実際にユーザーが操作するのと同じように、テストでも DOM 操作を行うことで、テストコードの信頼性を高めるため。
 - 内部コンポーネントが大きすぎる場合は、その内部のコンポーネントを分割し、分割したコンポーネントのテストに注力すること。
 
-#### API 通信を行うものをテストする場合は、インターセプターを利用してモックを作成する
+### API 通信を行うものをテストする場合は、インターセプターを利用してモックを作成する
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-36-stub-flaky-and-slow-resources-like-backend-apis
 
 - インターセプターを利用することで、API がエラーを返した場合など、テスト側である程度制御が可能になり、テスト容易性が高まるため。
   - https://github.com/mswjs/msw
 
-#### テストを BDD 形式で書き、テストをドキュメント化する
+### テストを BDD 形式で書き、テストをドキュメント化する
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-310-expose-the-tests-as-a-live-collaborative-document
 
@@ -183,15 +183,15 @@ https://ja.wikipedia.org/wiki/%E3%83%93%E3%83%98%E3%82%A4%E3%83%93%E3%82%A2%E9%A
 - テストケースを読むことで機能が「予期していること」「予期していないこと」がわかりやすくなるため。
 - 開発者、並びに関係者がテストを読むことで、機能の理解が深まるようなテストケースにすること。
 
-### Interaction Test
+## Interaction Test
 
 WIP
 
-### E2E
+## E2E
 
 WIP
 
-### 参照
+## 参照
 
 - https://github.com/goldbergyoni/javascript-testing-best-practices
 - https://kentcdodds.com/blog/making-your-ui-tests-resilient-to-change

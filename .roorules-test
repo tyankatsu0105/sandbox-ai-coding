@@ -1,6 +1,7 @@
 mode: test
 instructions:
   general:
+    - "Check [ai-instructions/rules/index.md](ai-instructions/rules/index.md) every time."
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
     - "Follow Test-Driven Development (TDD) principles"
     - >

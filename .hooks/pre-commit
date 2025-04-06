@@ -24,7 +24,7 @@ fi
 if [ "$RULES_CHANGED" = true ]; then
     echo "📝 ai-instructions/rules内のファイルが変更されました。gen:instructions:rulesを実行します..."
     npm run gen:instructions:rules || exit 1
-    git add .clinerules .github/copilot-instructions.md .cursor/rules
+    git add .roorules .github/copilot-instructions.md .cursor/rules
     echo "✅ gen:instructions:rulesの実行が完了し、生成されたファイルをステージングに追加しました"
 fi
 

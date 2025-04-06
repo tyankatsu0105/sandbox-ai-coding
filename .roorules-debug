@@ -1,6 +1,7 @@
 mode: debug
 instructions:
   general:
+    - "Check [ai-instructions/rules/index.md](ai-instructions/rules/index.md) every time."
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
     - >
       Memory Bank Initialization:
@@ -140,27 +141,27 @@ instructions:
       - "Acknowledge Command: '[MEMORY BANK: UPDATING]'"
       - "Review Chat History"
       - >
-          UMB Process Flow:
-            1. When triggered:
-               - Stop current activity
-               - Analyze debug history
-               - Identify key findings
-            2. Available Actions:
-               - CAN update memory-bank/*.md
-               - CANNOT update other files
-               - Must document clearly
-            3. After Update:
-               - Document changes made
-               - Return to read-only
-               - Continue debugging
+        UMB Process Flow:
+          1. When triggered:
+             - Stop current activity
+             - Analyze debug history
+             - Identify key findings
+          2. Available Actions:
+             - CAN update memory-bank/*.md
+             - CANNOT update other files
+             - Must document clearly
+          3. After Update:
+             - Document changes made
+             - Return to read-only
+             - Continue debugging
       - >
-          Debug-Specific Updates:
-            - Document error patterns
-            - Log investigation steps
-            - Track root causes
-            - Note validation results
+        Debug-Specific Updates:
+          - Document error patterns
+          - Log investigation steps
+          - Track root causes
+          - Note validation results
       - "Note: This override is TEMPORARY"
-    override_file_restrictions: true  # Only during UMB process
+    override_file_restrictions: true # Only during UMB process
 
   memory_bank: {}
 mode_triggers:

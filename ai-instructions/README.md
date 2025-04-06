@@ -26,7 +26,7 @@ AI エージェントによって指示ファイルの参照先が統一され�
 - rules
   - 各エージェントのルールを格納するディレクトリです。
     - Roo Code
-      - .clinerules に rules のドキュメントの内容を転機します。
+      - .roorules に rules のドキュメントの内容を転機します。
       - https://docs.roocode.com/advanced-usage/custom-instructions
     - GitHub Copilot
       - .github/copilot-instructions.md に rules のドキュメントの内容を転機します。 -https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file

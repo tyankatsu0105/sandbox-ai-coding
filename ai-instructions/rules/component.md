@@ -1,8 +1,8 @@
-## コンポーネント設計
+# コンポーネント設計
 
 コードを書く際のルールやガイドラインを以下に示します。これらのルールは、コードの可読性、保守性、拡張性を高めるために重要です。
 
-### コンポーネントの構造
+## コンポーネントの構造
 
 - コンポーネントを新しく作る場合は、以下のコンポーネントの構造を守ってください。
 
@@ -32,7 +32,7 @@
   - interaction test は行わない
   - props の値を変更して、UI の確認を行う
 
-#### 例 - Modal
+### 例 - Modal
 
 - index.ts
 
@@ -314,12 +314,12 @@ export const Primary: Story = {
 };
 ```
 
-### スタイリングは styled-components を使用する
+## スタイリングは styled-components を使用する
 
 - スタイリングは[styled-components](https://styled-components.com/docs)を使用してください。
 - それ以外の方法は使用しないでください。
 
-#### 例
+### 例
 
 ```tsx
 import styled from "styled-components";
@@ -327,13 +327,13 @@ import styled from "styled-components";
 const StyledButton = styled.button``;
 ```
 
-### styled-components で作成したコンポーネントは、Styled と接頭辞をつける
+## styled-components で作成したコンポーネントは、Styled と接頭辞をつける
 
 - styled-components で作成したコンポーネントは、Styled と接頭辞をつけてください。
 - 通常のコンポーネントと区別するためです。
 - 例: StyledButton, StyledContainer, StyledHeader など
 
-### 固定のクラス名を使用しない
+## 固定のクラス名を使用しない
 
 - className に固定の文字列を指定しないでください。
 - 上流からスタイルを上書きされる可能性があるためです。
@@ -341,14 +341,14 @@ const StyledButton = styled.button``;
 - 代わりに、styled-components を使用してスタイルを定義してください。
 - 例: ` const StyledModal = styled.div``; ` のようにしてください。
 
-### 再計算されるスタイルは、style props を使用する
+## 再計算されるスタイルは、style props を使用する
 
 - styled components で作成したコンポーネントに、再計算されるスタイルを指定する場合は、style props を使用してください。
 - styled components は、渡した props の値を動的に変えると、クラス名を都度変更してしまうためです。
   - これにより、パフォーマンスが低下する可能性があります。
 - 値が都度変わるものは、style props を使用してスタイルを指定するようにしてください。
 
-#### 例 - 良い例
+### 例 - 良い例
 
 ```tsx
 const Component = () => {
@@ -377,7 +377,7 @@ const Component = () => {
 };
 ```
 
-#### 例 - 悪い例
+### 例 - 悪い例
 
 ```tsx
 const Component = () => {

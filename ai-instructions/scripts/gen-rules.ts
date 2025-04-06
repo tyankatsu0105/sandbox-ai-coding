@@ -23,7 +23,7 @@ const clineruleProcessor: RuleProcessor = {
     return AUTO_GENERATED_WARNING + contents.join("\n");
   },
   getOutputPath: (baseDir: string): string => {
-    return join(baseDir, ".clinerules");
+    return join(baseDir, ".roorules");
   },
 };
 
@@ -117,9 +117,9 @@ async function main(): Promise<void> {
     const markdownFiles = await findMarkdownFiles(rulesDir);
     const contents = await readMarkdownContents(rulesDir, markdownFiles);
 
-    // .clinerules の生成
+    // .roorules の生成
     await generateRuleFile(contents, clineruleProcessor);
-    console.log(".clinerules の生成が完了しました");
+    console.log(".roorules の生成が完了しました");
 
     // GitHub Copilot instructions の生成
     await generateRuleFile(contents, copilotProcessor);
