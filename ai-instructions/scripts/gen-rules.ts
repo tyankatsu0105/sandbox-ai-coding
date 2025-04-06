@@ -18,7 +18,7 @@ interface RuleProcessor {
   getOutputPath: (baseDir: string) => string;
 }
 
-const clineruleProcessor: RuleProcessor = {
+const roorulesProcessor: RuleProcessor = {
   combineContents: (contents: string[]): string => {
     return AUTO_GENERATED_WARNING + contents.join("\n");
   },
@@ -118,7 +118,7 @@ async function main(): Promise<void> {
     const contents = await readMarkdownContents(rulesDir, markdownFiles);
 
     // .roorules の生成
-    await generateRuleFile(contents, clineruleProcessor);
+    await generateRuleFile(contents, roorulesProcessor);
     console.log(".roorules の生成が完了しました");
 
     // GitHub Copilot instructions の生成

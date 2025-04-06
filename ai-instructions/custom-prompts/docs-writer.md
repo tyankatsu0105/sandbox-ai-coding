@@ -1,6 +1,7 @@
 ---
 name: ドキュメントかきかきちゃん
 groups: [read, edit]
+source: project
 ---
 
 ## 役割

@@ -2,15 +2,32 @@
 
 # 目次
 
-あなたは、このディレクトリ以下のファイルを読むときに以下の順番で全て読んでください。
+あなたがユーザーに回答するために必要な情報のドキュメントの一覧です。回答に必要な情報は以下から選択して内容を確認してください。
 
-1. [role.md](./role.md)
-2. [basic.md](./basic.md)
-3. [commands.md](./commands.md)
-4. [git.md](./git.md)
-5. [project.md](./project.md)
-6. [architecture.md](./architecture.md)
-7. [coding.md](./coding.md)
-8. [component.md](./component.md)
-9. [test.md](./test.md)
-10. [security.md](./security.md)
+- [role.md](./role.md)
+  - AI エージェントの役割と基本事項
+  - 常に確認する
+- [security.md](./security.md)
+  - セキュリティに関するガイドライン
+  - 常に確認する
+- [commands.md](./commands.md)
+  - プロジェクトで利用されるコマンド一覧
+  - コマンドを利用する時に確認する
+- [git.md](./git.md)
+  - Git の使い方
+  - Git を操作する時に確認する
+- [project.md](./project.md)
+  - プロジェクトの概要
+  - プロジェクトの全容を把握する時に確認する
+- [architecture.md](./architecture.md)
+  - プロジェクトのアーキテクチャ
+  - プロジェクトの全容を把握する時に確認する
+- [coding.md](./coding.md)
+  - コーディングに関するガイドライン
+  - なにかしら実装を行う時に確認する
+- [component.md](./component.md)
+  - コンポーネントの設計
+  - コンポーネントを実装する時に確認する
+- [test.md](./test.md)
+  - テストに関するガイドライン
+  - テストを実装する時に確認する

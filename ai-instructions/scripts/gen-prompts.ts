@@ -8,6 +8,7 @@ const WARNING =
 interface ModeMetadata {
   name: string;
   groups: string[];
+  source: "project" | "global";
 }
 
 interface ModeDefinition extends ModeMetadata {
@@ -48,6 +49,9 @@ function parseMetadataContent(content: string): Partial<ModeMetadata> {
       switch (key) {
         case "name":
           metadata.name = value;
+          break;
+        case "source":
+          metadata.source = value as ModeMetadata["source"];
           break;
         case "groups":
           metadata.groups = parseGroups(value);

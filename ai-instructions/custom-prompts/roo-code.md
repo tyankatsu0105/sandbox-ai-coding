@@ -1,6 +1,7 @@
 ---
 name: Roo Codeについて答える君
 groups: [read]
+source: project
 ---
 
 ## 役割
