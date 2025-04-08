@@ -5,16 +5,16 @@ RULES_CHANGED=false
 
 # ステージングされたファイルの変更をチェック
 git diff --cached --name-only | while read file; do
-    if echo "$file" | grep "^ai-instructions/custom-prompts/" > /dev/null; then
+    if echo "$file" | grep "^docs/custom-prompts/" > /dev/null; then
         CUSTOM_PROMPTS_CHANGED=true
-    elif echo "$file" | grep "^ai-instructions/rules/" > /dev/null; then
+    elif echo "$file" | grep "^docs/rules/" > /dev/null; then
         RULES_CHANGED=true
     fi
 done
 
 # custom-promptsの変更がある場合
 if [ "$CUSTOM_PROMPTS_CHANGED" = true ]; then
-    echo "📝 ai-instructions/custom-prompts内のファイルが変更されました。gen:instructions:custom-promptsを実行します..."
+    echo "📝 docs/custom-prompts内のファイルが変更されました。gen:instructions:custom-promptsを実行します..."
     npm run gen:instructions:custom-prompts || exit 1
     git add .roomodes .github/prompts
     echo "✅ gen:instructions:custom-promptsの実行が完了し、生成されたファイルをステージングに追加しました"
@@ -22,7 +22,7 @@ fi
 
 # rulesの変更がある場合
 if [ "$RULES_CHANGED" = true ]; then
-    echo "📝 ai-instructions/rules内のファイルが変更されました。gen:instructions:rulesを実行します..."
+    echo "📝 docs/rules内のファイルが変更されました。gen:instructions:rulesを実行します..."
     npm run gen:instructions:rules || exit 1
     git add .roorules .github/copilot-instructions.md .cursor/rules
     echo "✅ gen:instructions:rulesの実行が完了し、生成されたファイルをステージングに追加しました"

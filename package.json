@@ -11,8 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
-    "gen:instructions:rules": "npx tsx ai-instructions/scripts/gen-rules.ts",
-    "gen:instructions:custom-prompts": "npx tsx ai-instructions/scripts/gen-prompts.ts"
+    "gen:instructions:rules": "npx tsx docs/scripts/gen-rules.ts",
+    "gen:instructions:custom-prompts": "npx tsx docs/scripts/gen-prompts.ts"
   },
   "dependencies": {
     "@testing-library/dom": "^10.4.0",

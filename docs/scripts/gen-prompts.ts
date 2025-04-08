@@ -2,7 +2,7 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { join } from "path";
 
 const WARNING =
-  "このファイルはai-instructions/custom-prompts以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、ai-instructions/custom-prompts以下のファイルを編集し、scriptを実行してください。";
+  "このファイルはdocs/custom-prompts以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、docs/custom-prompts以下のファイルを編集し、scriptを実行してください。";
 
 // モードの設定に関する型定義
 interface ModeMetadata {
@@ -222,11 +222,7 @@ async function saveModeConfiguration(
  */
 async function main(): Promise<void> {
   try {
-    const customPromptsDir = join(
-      process.cwd(),
-      "ai-instructions",
-      "custom-prompts"
-    );
+    const customPromptsDir = join(process.cwd(), "docs", "custom-prompts");
     const markdownFiles = await findMarkdownFiles(customPromptsDir);
     const modeDefinitions = await generateModeDefinitions(
       customPromptsDir,

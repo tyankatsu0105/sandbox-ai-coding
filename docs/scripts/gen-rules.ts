@@ -3,7 +3,7 @@ import { join } from "path";
 import { existsSync } from "fs";
 
 const WARNING =
-  "このファイルはai-instructions/rules以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、ai-instructions/rules以下のファイルを編集し、scriptを実行してください。";
+  "このファイルはdocs/rules以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、docs/rules以下のファイルを編集し、scriptを実行してください。";
 
 /** 自動生成ファイルであることを示す警告コメント */
 const AUTO_GENERATED_WARNING = `<!-- ${WARNING} -->\n\n`;
@@ -113,7 +113,7 @@ async function generateRuleFile(
  */
 async function main(): Promise<void> {
   try {
-    const rulesDir = join(process.cwd(), "ai-instructions", "rules");
+    const rulesDir = join(process.cwd(), "docs", "rules");
     const markdownFiles = await findMarkdownFiles(rulesDir);
     const contents = await readMarkdownContents(rulesDir, markdownFiles);
 

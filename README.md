@@ -5,7 +5,7 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 ## 想定ユーザー
 
 限定的なサポート対象のみ想定しています。  
-現在のサポート一覧は[サポート対象](./ai-instructions/README.md#サポート対象)を参照してください。
+現在のサポート一覧は[サポート対象](./docs/README.md#サポート対象)を参照してください。
 
 - GitHub Copilot
 - GitHub Copilot(code completion 機能のみ) + Cline
@@ -14,7 +14,7 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 
 ## できること
 
-- ai-instructions ディレクトリにあるドキュメントをもとに、各エージェントの指示書ファイルを生成することができます。
+- docs ディレクトリにあるドキュメントをもとに、各エージェントの指示書ファイルを生成することができます。
 - .vscode/settings.json にある設定をもとに、copilot の設定を変更することができます。
 - mcp の設定を行うことで、外部ツールとの連携が可能になります。
 - memory bank の概念を導入することで、セッション間でのコンテキストの維持を可能にします。
@@ -22,7 +22,7 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 
 ## 準備
 
-1. [サポートされている AI エージェント、エディタ](./ai-instructions/README.md)を利用可能な状態にする
+1. [サポートされている AI エージェント、エディタ](./docs/README.md)を利用可能な状態にする
 2. memory bank の概念を AI に持たせる
    - Cline
      - https://docs.cline.bot/improving-your-prompting-skills/custom-instructions-library/cline-memory-bank
