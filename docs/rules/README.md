@@ -78,7 +78,7 @@ Plan, Do, Check, Action を意識して行動してください。
       - アルゴリズムの変更が容易になる
     - 理由
       - アルゴリズムをカプセル化し、クライアントから独立させることで、柔軟性を向上させる
-- [ ] ## Link コンポーネントのテスト方法を調査する
+- [ ] Link コンポーネントのテスト方法を調査する
 - [ ] Link コンポーネントのドキュメントを調査する
 - [ ] Link コンポーネントのスタイリング方法を調査する
 - [ ] Link コンポーネントのアクセシビリティを調査する
@@ -146,36 +146,36 @@ Plan, Do, Check, Action を意識して行動してください。
 - security.md
   - [path](./security.md)
   - ref：always
-  - descriotion:セキュリティに関するガイドライン
+  - description: セキュリティに関するガイドライン
 - commands.md
   - [path](./commands.md)
   - ref：コマンドを利用する時
-  - descriotion:プロジェクトで利用されるコマンド一覧
+  - description: プロジェクトで利用されるコマンド一覧
 - git.md
   - [path](./git.md)
   - ref：Git を操作する時
-  - descriotion:Git の使い方
+  - description: Git の使い方
 - project.md
   - [path](./project.md)
   - ref：プロジェクトの全容を把握する時
-  - descriotion:プロジェクトの概要
+  - description: プロジェクトの概要
 - architecture.md
   - [path](./architecture.md)
   - ref：プロジェクトの全容を把握する時
-  - descriotion:プロジェクトのアーキテクチャ
+  - description: プロジェクトのアーキテクチャ
 - coding.md
   - [path](./coding.md)
   - ref：なにかしら実装を行う時
-  - descriotion:コーディングに関するガイドライン
+  - description: コーディングに関するガイドライン
 - component.md
   - [path](./component.md)
   - ref：コンポーネントを実装する時
-  - descriotion:コンポーネントの設計
+  - description: コンポーネントの設計
 - test.md
   - [path](./test.md)
   - ref：テストを実装する時
-  - descriotion:テストに関するガイドライン
+  - description: テストに関するガイドライン
 - memory-bank.md
   - [path](./memory-bank.md)
   - ref：always
-  - descriotion:AI エージェントのメモリバンク。初期化するときは「initialize memory bank」と尋ねる
+  - description: AI エージェントのメモリバンク。初期化するときは「initialize memory bank」と尋ねる
