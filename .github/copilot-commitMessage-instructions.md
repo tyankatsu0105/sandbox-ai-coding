@@ -1,6 +1,7 @@
 # コミットメッセージガイドライン
 
 このガイドラインは[Conventional Commits 1.0.0](https://www.conventionalcommits.org/ja/v1.0.0/)に基づいています。
+常に日本語で書いてください。
 
 ## 構造
 
@@ -44,7 +45,3 @@ docs: READMEを更新
 feat!: APIレスポンス形式を変更
 BREAKING CHANGE: レスポンスがJSONからXMLに変更
 ```
-
-## 最後に補足
-
-- description に当たる箇所は日本語で書いてください。

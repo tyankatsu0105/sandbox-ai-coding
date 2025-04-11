@@ -54,7 +54,7 @@ async function main(): Promise<void> {
       },
       {
         path: join(process.cwd(), ".cursor", "rules", "README.md"),
-        relativePath: "../docs/rules",
+        relativePath: "../../docs/rules",
       },
       {
         path: join(process.cwd(), ".github", "copilot-instructions.md"),

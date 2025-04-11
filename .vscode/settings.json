@@ -2,6 +2,7 @@
   "github.copilot.selectedCompletionModel": "gpt-4o-copilot",
   // https://code.visualstudio.com/docs/copilot/ai-powered-suggestions#_next-edit-suggestions-preview
   "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.localeOverride": "ja",
   // https://code.visualstudio.com/docs/copilot/copilot-customization#_define-commit-message-generation-custom-instructions
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
