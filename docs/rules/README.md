@@ -1,0 +1,44 @@
+# 目次
+
+あなたがユーザーに回答するために必要な情報のドキュメントの一覧です。回答に必要な情報は以下から選択して内容を確認してください。
+
+- role.md
+  - path:./role.md
+  - ref：always
+  - descriotion:AI エージェントの役割と基本事項
+- security.md
+  - path:./security.md
+  - ref：always
+  - descriotion:セキュリティに関するガイドライン
+- commands.md
+  - path:./commands.md
+  - ref：コマンドを利用する時
+  - descriotion:プロジェクトで利用されるコマンド一覧
+- git.md
+  - path:./git.md
+  - ref：Git を操作する時
+  - descriotion:Git の使い方
+- project.md
+  - path:./project.md
+  - ref：プロジェクトの全容を把握する時
+  - descriotion:プロジェクトの概要
+- architecture.md
+  - path:./architecture.md
+  - ref：プロジェクトの全容を把握する時
+  - descriotion:プロジェクトのアーキテクチャ
+- coding.md
+  - path:./coding.md
+  - ref：なにかしら実装を行う時
+  - descriotion:コーディングに関するガイドライン
+- component.md
+  - path:./component.md
+  - ref：コンポーネントを実装する時
+  - descriotion:コンポーネントの設計
+- test.md
+  - path:./test.md
+  - ref：テストを実装する時
+  - descriotion:テストに関するガイドライン
+- memory-bank.md
+  - path:./memory-bank.md
+  - ref：always
+  - descriotion:AI エージェントのメモリバンク。初期化するときは「initialize memory bank」と尋ねる
