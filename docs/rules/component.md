@@ -2,324 +2,42 @@
 
 コードを書く際のルールやガイドラインを以下に示します。これらのルールは、コードの可読性、保守性、拡張性を高めるために重要です。
 
-## コンポーネントの構造
+## コンポーネントの基本構造
 
-- コンポーネントを新しく作る場合は、以下のコンポーネントの構造を守ってください。
+コンポーネントを新しく作る場合は、以下のファイル構成に従ってください：
 
-- index.ts
-  - container.tsx のコンポーネントをエクスポートする
-  - 場合によっては、facade.ts の内容をエクスポートする
-- container.tsx
-  - props と facade.ts の処理を利用して、presentational.tsx を呼び出す
-- container.stories.tsx
-  - container.tsx の interaction test を行う
-  - facade の処理と props の処理の統合テストの様な役割を果たす
-  - presentational.stories.tsx で行う UI の確認は行わない
-    - play 関数を伴うコンポーネントのみ作成する
-  - vitest を起動し、テストがパスするまで確認、修正を繰り返すこと
-- facade.ts
-  - container.tsx が依存する処理を実装する
-  - 処理の内容は react のカスタムフックスでもあれば、その必要がなければただの関数でも良い
-  - 定数を定義することもある
-- facade.test.ts
-  - facade.ts の処理をテストする
-  - vitest を起動し、テストがパスするまで確認、修正を繰り返すこと
-- presentational.tsx
-  - props を受け取って、UI を表示する
-  - 内部でロジックは持たない
-- presentational.stories.tsx
-  - presentational.tsx の UI の確認を行う
+- `index.ts`
+  - `container.tsx`のコンポーネントをエクスポート
+  - 必要に応じて`facade.ts`の機能をエクスポート
+- `container.tsx`
+  - props と facade.ts の処理を利用して`presentational.tsx`を呼び出す
+- `container.stories.tsx`
+  - container.tsx の interaction test を実装
+  - facade の処理と props の処理の統合テスト
+  - presentational の UI 確認は行わない
+  - play 関数を伴うコンポーネントのみ作成
+  - vitest でのテスト実行と修正
+- `facade.ts`
+  - container.tsx が依存する処理を実装
+  - React カスタムフックまたは通常の関数として実装
+  - 必要に応じて定数を定義
+- `facade.test.ts`
+  - facade.ts の処理のテストを実装
+  - vitest でのテスト実行と修正
+- `presentational.tsx`
+  - props を受け取って UI を表示
+  - 内部でロジックを持たない
+- `presentational.stories.tsx`
+  - presentational.tsx の UI 確認
   - interaction test は行わない
-  - props の値を変更して、UI の確認を行う
+  - props による UI 表示の確認
 
-### 例 - Modal
+## スタイリングのルール
 
-- index.ts
+### styled-components の使用
 
-```tsx
-export * from "./container";
-export { useModal } from "./facade";
-```
-
-- container.tsx
-
-```tsx
-import { ComponentProps, memo } from "react";
-
-import { Presentational } from "./presentational";
-import { CLOSE_ICON } from "./facade";
-
-type Props = {
-  readonly isOpen: boolean;
-  readonly onClose: ComponentProps<typeof Presentational>["onClose"];
-  readonly renderHeader: ComponentProps<typeof Presentational>["renderHeader"];
-  readonly renderBody: ComponentProps<typeof Presentational>["renderBody"];
-  readonly renderFooter: ComponentProps<typeof Presentational>["renderFooter"];
-};
-export const Modal = memo(function Modal(props: Props) {
-  if (!props.isOpen) return <></>;
-
-  return (
-    <Presentational
-      renderCloseIcon={() => <span>{CLOSE_ICON}</span>}
-      onClose={props.onClose}
-      renderHeader={props.renderHeader}
-      renderBody={props.renderBody}
-      renderFooter={props.renderFooter}
-    />
-  );
-});
-```
-
-- container.stories.tsx
-
-```tsx
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within } from "@storybook/test";
-
-import { Modal } from "./container";
-import { useModal } from "./facade";
-
-const meta = {
-  component: Modal,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
-} satisfies Meta<typeof Modal>;
-
-export default meta;
-type Story = Omit<StoryObj<typeof meta>, "args"> & {
-  args?: StoryObj<typeof meta>;
-};
-
-export const Primary: Story = {
-  render: () => {
-    const modal = useModal(true);
-
-    return (
-      <Modal
-        isOpen={modal.isOpen}
-        onClose={modal.handleClose}
-        renderBody={() => <>本文</>}
-        renderHeader={() => <>タイトル</>}
-        renderFooter={({ components }) => (
-          <components.Button onClick={modal.handleClose}>
-            Close
-          </components.Button>
-        )}
-      />
-    );
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const closeButton = canvas.getByLabelText("Close");
-    await userEvent.click(closeButton);
-    await expect(closeButton).not.toBeInTheDocument();
-  },
-};
-```
-
-- facade.ts
-
-```tsx
-import { useState } from "react";
-
-/**
- * モーダルの状態を管理する
- */
-export const useModal = (initialValue?: boolean) => {
-  const [isOpen, setIsOpen] = useState(initialValue || false);
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
-
-  return {
-    isOpen,
-    handleOpen,
-    handleClose,
-  };
-};
-
-export const CLOSE_ICON = "×";
-```
-
-- facade.test.ts
-
-```tsx
-import { expect, describe, it } from "vitest";
-import * as Facade from "./facade";
-import { act, renderHook } from "@testing-library/react";
-
-describe("facade", () => {
-  describe("useModal", () => {
-    it("初期値はfalseであること", () => {
-      const { result } = renderHook(() => Facade.useModal());
-
-      expect(result.current.isOpen).toBe(false);
-    });
-
-    it("初期値をtrueにするとisOpenがtrueになること", () => {
-      const { result } = renderHook(() => Facade.useModal(true));
-
-      expect(result.current.isOpen).toBe(true);
-    });
-    it("handleOpenを呼ぶとisOpenがtrueになること", () => {
-      const { result } = renderHook(() => Facade.useModal(false));
-
-      act(() => {
-        result.current.handleOpen();
-      });
-
-      expect(result.current.isOpen).toBe(true);
-    });
-    it("handleCloseを呼ぶとisOpenがfalseになること", () => {
-      const { result } = renderHook(() => Facade.useModal(true));
-
-      act(() => {
-        result.current.handleClose();
-      });
-
-      expect(result.current.isOpen).toBe(false);
-    });
-  });
-});
-```
-
-- presentational.tsx
-
-```tsx
-import { memo } from "react";
-import styled from "styled-components";
-
-const StyledContainer = styled.div`
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #333;
-`;
-
-const StyledContent = styled.div`
-  background-color: #fefefe;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 4px;
-  position: relative;
-`;
-
-const StyledHeader = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  padding: 8px 12px;
-  border-bottom: 1px solid #000;
-`;
-const StyledBody = styled.div`
-  padding: 8px 12px;
-  border-bottom: 1px solid #000;
-`;
-const StyledFooter = styled.div`
-  padding: 8px 12px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-`;
-
-const StyledCloseIcon = styled.button`
-  position: absolute;
-  top: -20px;
-  right: -12px;
-  font-size: 24px;
-`;
-const StyledCloseButton = styled.button`
-  padding: 4px 8px;
-  background-color: red;
-  cursor: pointer;
-`;
-
-type Props = {
-  readonly onClose: () => void;
-  readonly renderCloseIcon: () => React.ReactNode;
-  readonly renderHeader?: () => React.ReactNode;
-  readonly renderBody?: () => React.ReactNode;
-  readonly renderFooter?: (props: {
-    components: {
-      Button: typeof StyledCloseButton;
-    };
-  }) => React.ReactNode;
-};
-export const Presentational = memo(function Presentational(props: Props) {
-  return (
-    <StyledContainer onClick={props.onClose}>
-      <StyledContent onClick={(e) => e.stopPropagation()}>
-        <StyledCloseIcon
-          onClick={props.onClose}
-          role="button"
-          aria-label="Close"
-        >
-          {props.renderCloseIcon()}
-        </StyledCloseIcon>
-        {props.renderHeader && (
-          <StyledHeader>{props.renderHeader()}</StyledHeader>
-        )}
-        {props.renderBody && <StyledBody>{props.renderBody()}</StyledBody>}
-        {props.renderFooter && (
-          <StyledFooter>
-            {props.renderFooter({ components: { Button: StyledCloseButton } })}
-          </StyledFooter>
-        )}
-      </StyledContent>
-    </StyledContainer>
-  );
-});
-```
-
-- presentational.stories.tsx
-
-```tsx
-import type { Meta, StoryObj } from "@storybook/react";
-
-import { Presentational } from "./presentational";
-
-const meta = {
-  component: Presentational,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
-} satisfies Meta<typeof Presentational>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
-  args: {
-    onClose: () => {
-      alert("onClose");
-    },
-    renderHeader: () => <>タイトル</>,
-    renderBody: () => <>本文</>,
-    renderFooter: ({ components }) => (
-      <components.Button>閉じる</components.Button>
-    ),
-    renderCloseIcon: () => <span>×</span>,
-  },
-};
-```
-
-## スタイリングは styled-components を使用する
-
-- スタイリングは[styled-components](https://styled-components.com/docs)を使用してください。
-- それ以外の方法は使用しないでください。
-
-### 例
+- [styled-components](https://styled-components.com/docs)を使用すること
+- それ以外の方法は使用しないこと
 
 ```tsx
 import styled from "styled-components";
@@ -327,28 +45,25 @@ import styled from "styled-components";
 const StyledButton = styled.button``;
 ```
 
-## styled-components で作成したコンポーネントは、Styled と接頭辞をつける
+### コンポーネント命名規則
 
-- styled-components で作成したコンポーネントは、Styled と接頭辞をつけてください。
-- 通常のコンポーネントと区別するためです。
-- 例: StyledButton, StyledContainer, StyledHeader など
+- styled-components で作成したコンポーネントは`Styled`接頭辞をつける
+- 一般コンポーネントと区別するため
+- 例：`StyledButton`, `StyledContainer`, `StyledHeader`
 
-## 固定のクラス名を使用しない
+### クラス名の使用制限
 
-- className に固定の文字列を指定しないでください。
-- 上流からスタイルを上書きされる可能性があるためです。
-- 例: className="modal" は使用しないでください。
-- 代わりに、styled-components を使用してスタイルを定義してください。
-- 例: ` const StyledModal = styled.div``; ` のようにしてください。
+- 固定の`className`を指定しない
+- 上流からのスタイル上書きを防ぐため
+- 例：
+  - ❌ `className="modal"`
+  - ⭕️ ` const StyledModal = styled.div``;  `
 
-## 再計算されるスタイルは、style props を使用する
+### 動的スタイルの適用
 
-- styled components で作成したコンポーネントに、再計算されるスタイルを指定する場合は、style props を使用してください。
-- styled components は、渡した props の値を動的に変えると、クラス名を都度変更してしまうためです。
-  - これにより、パフォーマンスが低下する可能性があります。
-- 値が都度変わるものは、style props を使用してスタイルを指定するようにしてください。
+再計算されるスタイルは style props を使用してください：
 
-### 例 - 良い例
+#### 良い例
 
 ```tsx
 const Component = () => {
@@ -364,7 +79,6 @@ const Component = () => {
   return (
     <>
       <header ref={headerRef}>...</header>
-
       <StyledMain
         style={{
           marginTop: `${headerRefHeight}px`,
@@ -377,7 +91,7 @@ const Component = () => {
 };
 ```
 
-### 例 - 悪い例
+#### 悪い例
 
 ```tsx
 const Component = () => {
@@ -386,60 +100,82 @@ const Component = () => {
   return (
     <>
       <header>...</header>
-
       <StyledMain margintop={headerRefHeight}>...</StyledMain>
     </>
   );
 };
 ```
 
-## 設計には複数のアーキテクチャを検討する
+## アーキテクチャパターン
 
-コンポーネントの設計には、以下のような異なるアーキテクチャパターンを状況に応じて検討してください。各パターンには特徴的なメリットと適用ケースがあり、要件や制約に応じて最適なパターンを選択することが重要です。
+コンポーネントの設計には、以下のパターンから適切なものを選択してください。
 
 ### Container/Presentational パターン
 
-ロジックと UI を分離するための設計パターンです。コンポーネントを Container（ロジック）と Presentational（UI）の 2 つの役割に分けることで、責務を明確に分離し、コードの保守性と再利用性を高めることができます。
+ロジックと UI を分離する設計パターンです。コンポーネントを Container（ロジック）と Presentational（UI）の 2 つの役割に分けることで、責務を明確に分離します。
 
-**構成要素：**
+#### 構成要素
 
 1. Container コンポーネント（container.tsx）
 
-   - データの取得や状態管理などのロジックを担当
-   - API との通信やデータの加工処理を行う
-   - Presentational コンポーネントに必要なデータとコールバック関数を提供
-   - Facade から提供される機能を利用してロジックを実装
-   - ビジネスロジックに関するテストを実装（container.stories.tsx）
+   - データ取得・状態管理のロジックを担当
+   - API との通信やデータ加工
+   - Presentational コンポーネントへのデータ提供
+   - Facade の機能利用
+   - ビジネスロジックのテスト実装
 
 2. Presentational コンポーネント（presentational.tsx）
-   - 受け取った props を使用して UI をレンダリング
-   - 内部でロジックを持たない（ロジックは Container に委譲）
-   - スタイリングや見た目の実装に注力
-   - 再利用可能な UI コンポーネントとして機能
-   - UI に関するテストを実装（presentational.stories.tsx）
+   - props を使用した UI レンダリング
+   - ロジックを持たない
+   - スタイリングに注力
+   - 再利用可能な UI 実装
+   - UI テストの実装
 
 #### メリット
 
-1. **関心の分離**
+- **関心の分離**
+  - ロジックと UI の明確な分離
+  - コードの保守性向上
+- **テスタビリティ向上**
+  - 個別のテスト実施が容易
+  - モック・スタブの活用
+- **再利用性向上**
+  - UI コンポーネントの再利用
+  - 異なる Container での活用
+- **開発効率向上**
+  - UI/ロジック開発の分業化
+  - チーム開発の円滑化
 
-   - ロジックと UI が分離されることで、それぞれの責務が明確になる
-   - コードの見通しが良くなり、保守性が向上する
+#### 使用ケース
 
-2. **テスタビリティの向上**
+1. データ操作と UI の責務を分離したい場合
 
-   - UI とロジックが分離されているため、それぞれを個別にテストできる
-   - モックやスタブを使用したテストが容易になる
+   - フォーム処理
+   - データ一覧表示
+   - ダッシュボード
+   - API データの表示
 
-3. **再利用性の向上**
+2. 複雑なビジネスロジックを含む場合
 
-   - Presentational コンポーネントは純粋な UI コンポーネントとして再利用可能
-   - 異なる Container から同じ Presentational コンポーネントを使用できる
+   - 注文処理
+   - ユーザー認証
+   - データ集計・分析
+   - ワークフロー管理
 
-4. **開発効率の向上**
-   - UI デザイナーとロジック開発者の分業が容易になる
-   - コンポーネントの役割が明確なため、チーム開発がスムーズになる
+3. UI の再利用性を高めたい場合
 
-#### 実装例 - カウンターコンポーネント
+   - 共通コンポーネント
+   - テーマ対応 UI
+   - マルチプラットフォーム対応
+   - 異なるデータソースでの使用
+
+4. テスト容易性が重要な場合
+   - クリティカルな機能
+   - 複雑な状態管理
+   - ビジネスロジックの検証
+   - UI の独立したテスト
+
+#### 実装例
 
 シンプルなカウンターコンポーネントを例に、Container/Presentational パターンの実装方法を示します。
 
@@ -527,46 +263,65 @@ export const Counter = memo(function Counter(props: Props) {
 });
 ```
 
-このパターンでは：
-
-- Presentational コンポーネントは見た目とイベントハンドラーの受け取りのみを担当
-- Facade はカウンターのロジックを提供するカスタムフックを実装
-- Container コンポーネントはロジックとビューを接続する役割を果たす
-
-以上を満たすことが可能です。
-
 ### Render Props パターン
 
-コンポーネント間でコードを共有し、UI の柔軟性を高めるための設計パターンです。`render`または任意のプロップとして関数を渡し、その関数内でコンポーネントをレンダリングすることで、再利用性の高いコンポーネントを作成できます。
+コンポーネント間でコードを共有し、UI の柔軟性を高める設計パターンです。`render`または任意のプロップとして関数を渡し、その関数内でコンポーネントをレンダリングします。
 
-**構成要素：**
+#### 構成要素
 
 1. レンダリング関数
 
-   - コンポーネントの表示内容を定義する関数
-   - 親コンポーネントから渡される
-   - 子コンポーネントの一部または全体の表示をカスタマイズ可能
+   - コンポーネントの表示内容を定義
+   - 親コンポーネントから提供
+   - 表示のカスタマイズ機能
 
-2. コンポーネント本体 - レンダリング関数を受け取り、適切なタイミングで実行 - 共通のロジックやスタイリングを提供 - 必要に応じてコンテキストやコールバック関数を提供
-   Render Props パターンは、コンポーネント間でコードを共有するためのテクニックで、`render`または任意のプロップとして関数を渡し、その関数内でコンポーネントをレンダリングする方法です。このパターンを使用することで、コンポーネントのロジックを分離しつつ、レンダリングの柔軟性を高めることができます。
+2. コンポーネント本体
+   - レンダリング関数の実行
+   - 共通ロジック・スタイリングの提供
+   - コンテキスト・コールバック関数の提供
 
 #### メリット
 
-1. **柔軟性**
+- **柔軟性**
+  - 子コンポーネントのレンダリング制御
+  - 再利用性の向上
+- **関心の分離**
+  - ロジックと表示の分離
+  - 責務の明確化
+- **テスタビリティ**
+  - 個別テストの実施
+  - モック・スタブの活用
 
-   - 子コンポーネントのレンダリング方法を親コンポーネントが制御できる
-   - UI の見た目を変更しやすく、再利用性が高い
+#### 使用ケース
 
-2. **関心の分離**
+1. コンポーネントの表示内容のカスタマイズ
 
-   - ロジックと表示を明確に分離できる
-   - コンポーネントの責務を明確にできる
+   - モーダル
+   - ダイアログ
+   - カード
+   - リスト項目
 
-3. **テスタビリティ**
-   - レンダリングロジックとビジネスロジックを個別にテストできる
-   - モックやスタブを使用したテストが容易
+2. 共通ロジックで異なる表示の実現
 
-#### 実装例 - Modal コンポーネント
+   - データフェッチング
+   - ページネーション
+   - フィルタリング
+   - ソート機能
+
+3. 親のコンテキスト・データの提供
+
+   - テーマ設定
+   - 認証情報
+   - 多言語化
+   - 設定情報
+
+4. UI の動的な差し替え
+   - 条件付きレンダリング
+   - A/B テスト
+   - フィーチャーフラグ
+   - プラグイン機能
+
+#### 実装例
 
 シンプルなモーダルコンポーネントを例に、Render Props パターンの実装方法を示します。
 
@@ -610,62 +365,70 @@ export const Presentational = memo(function Presentational(props: Props) {
 />
 ```
 
-このパターンを使用することで：
-
-- ヘッダー、ボディ、フッターの内容を柔軟にカスタマイズ可能
-- 各部分のレンダリングロジックを親コンポーネントで制御可能
-- スタイル付きコンポーネント（Button）を子コンポーネントに提供可能
-- 必要な部分のみを選択的にレンダリング可能
-
-#### 使用するケース
-
-以下のような場合に Render Props パターンの使用を検討してください：
-
-1. コンポーネントの一部の表示内容を柔軟にカスタマイズしたい場合
-2. 共通のロジックを持つが、表示内容が異なるコンポーネントを作成する場合
-3. 子コンポーネントに親のコンテキストやデータを提供する必要がある場合
-4. UI の一部を動的に差し替えたい場合
-
 ### Compound パターン
 
-意味的に関連するコンポーネントをグループ化し、より直感的な API を提供するための設計パターンです。親コンポーネントと子コンポーネント間で状態を共有し、密接に連携する複数のコンポーネントを 1 つの使いやすいインターフェースとして提供します。
+関連するコンポーネントをグループ化し、直感的な API を提供する設計パターンです。親コンポーネントと子コンポーネント間で状態を共有し、密接に連携するコンポーネント群を 1 つのインターフェースとして提供します。
 
-**構成要素：**
+#### 構成要素
 
 1. ルートコンポーネント
 
-   - グループ全体のコンテキストを提供
-   - 共有状態の管理を担当
-   - 子コンポーネントの連携を制御
+   - グループのコンテキスト提供
+   - 共有状態の管理
+   - 子コンポーネントの連携制御
 
 2. 子コンポーネント群
-   - それぞれ特定の役割を持つ
-   - コンテキストを通じて状態を共有
-   - 互いに連携して動作
-   - 単体でも使用可能だが、ルートコンポーネント配下で使用することを想定
+   - 特定の役割を担当
+   - コンテキストでの状態共有
+   - 相互の連携動作
+   - 単独使用も可能
 
 #### メリット
 
-1. **直感的な API**
+- **直感的な API**
+  - 明確な関係性
+  - 自然な階層構造
+- **柔軟性**
+  - 配置の自由度
+  - 必要な機能の選択
+- **カプセル化**
+  - コンポーネントのグループ化
+  - 状態管理の隠蔽
 
-   - コンポーネントの関係性が明確で理解しやすい
-   - JSX で自然な階層構造を表現できる
+#### 使用ケース
 
-2. **柔軟性**
+1. 関連コンポーネントのグループ化
 
-   - 子コンポーネントの配置を自由に制御できる
-   - 必要な子コンポーネントのみを使用可能
+   - タブ
+   - アコーディオン
+   - メニュー
+   - フォームコントロール
 
-3. **カプセル化**
-   - 関連するコンポーネントを 1 つの名前空間にまとめられる
-   - 内部の状態管理を隠蔽できる
+2. 状態共有の必要性
 
-#### 実装例 - Tabs コンポーネント
+   - 選択状態
+   - 開閉状態
+   - フォーカス状態
+   - 入力値の同期
 
-シンプルなタブコンポーネントを例に、Compound パターンの実装方法を示します。
+3. 直感的な API 提供
+
+   - 階層構造の活用
+   - セマンティックな関係性
+   - コンポーネントの組み合わせ
+   - カスタマイズ可能性
+
+4. アクセシビリティ実装
+   - WAI-ARIA パターン
+   - キーボード操作
+   - フォーカス管理
+   - スクリーンリーダー対応
+
+#### 実装例
+
+タブコンポーネントを例に、Compound パターンの実装方法を示します。
 
 ```tsx
-// container.tsx
 import { createContext, useContext, useState, memo } from "react";
 
 type TabsContextType = {
@@ -738,7 +501,6 @@ const TabPanel = memo(function TabPanel({ children, id }: TabPanelProps) {
   return <div role="tabpanel">{children}</div>;
 });
 
-// コンポーネントを複合オブジェクトとしてエクスポート
 export const Tabs = {
   Root: TabsRoot,
   List: TabList,
@@ -762,36 +524,3 @@ export const Tabs = {
   <Tabs.Panel id="tab3">Content for Tab 3</Tabs.Panel>
 </Tabs.Root>
 ```
-
-このパターンを使用することで：
-
-- 関連するコンポーネントが明確にグループ化される
-- 状態管理が親コンポーネントに集約される
-- コンポーネント間の関係性が直感的に理解できる
-- アクセシビリティの実装が容易になる
-
-#### 使用するケース
-
-以下のような場合に Compound パターンの使用を検討してください：
-
-1. 複数の関連するコンポーネントをグループ化する必要がある場合
-
-   - タブ
-   - アコーディオン
-   - メニュー
-   - フォームコントロール
-
-2. コンポーネント間で状態を共有する必要がある場合
-
-   - 選択状態
-   - 開閉状態
-   - フォーカス状態
-
-3. 直感的な API を提供したい場合
-
-   - JSX の階層構造を活かした実装
-   - セマンティックな関係性の表現
-
-4. アクセシビリティを考慮した UI 実装が必要な場合
-   - WAI-ARIA パターンの実装
-   - キーボード操作のサポート
