@@ -19,7 +19,7 @@
 
 ### コミットメッセージガイドライン
 
-このガイドラインは[Conventional Commits 1.0.0](https://www.conventionalcommits.org/ja/v1.0.0/)に基づいています。
+このガイドラインは[Conventional Commits 1.0.0](https://www.conventionalcommits.org/ja/v1.0.0/)に基づく。
 
 ##### 構造
 
@@ -66,4 +66,4 @@ BREAKING CHANGE: レスポンスがJSONからXMLに変更
 
 ### 最後に補足
 
-- description に当たる箇所は日本語で書いてください。
+- description に当たる箇所は日本語で書け。

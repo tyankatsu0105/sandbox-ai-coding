@@ -108,11 +108,11 @@ const Component = () => {
 
 ## アーキテクチャパターン
 
-コンポーネントの設計には、以下のパターンから適切なものを選択してください。
+コンポーネントの設計には、以下のパターンから適切なものを選択しろ。
 
 ### Container/Presentational パターン
 
-ロジックと UI を分離する設計パターンです。コンポーネントを Container（ロジック）と Presentational（UI）の 2 つの役割に分けることで、責務を明確に分離します。
+ロジックと UI を分離する設計パターン。コンポーネントを Container（ロジック）と Presentational（UI）の 2 つの役割に分けることで、責務を明確に分離する。
 
 #### 構成要素
 
@@ -177,7 +177,7 @@ const Component = () => {
 
 #### 実装例
 
-シンプルなカウンターコンポーネントを例に、Container/Presentational パターンの実装方法を示します。
+シンプルなカウンターコンポーネントを例に、Container/Presentational パターンの実装方法を示す。
 
 - presentational.tsx
 
@@ -265,7 +265,7 @@ export const Counter = memo(function Counter(props: Props) {
 
 ### Render Props パターン
 
-コンポーネント間でコードを共有し、UI の柔軟性を高める設計パターンです。`render`または任意のプロップとして関数を渡し、その関数内でコンポーネントをレンダリングします。
+コンポーネント間でコードを共有し、UI の柔軟性を高める設計パターン。`render`または任意のプロップとして関数を渡し、その関数内でコンポーネントをレンダリングする。
 
 #### 構成要素
 
@@ -323,7 +323,7 @@ export const Counter = memo(function Counter(props: Props) {
 
 #### 実装例
 
-シンプルなモーダルコンポーネントを例に、Render Props パターンの実装方法を示します。
+シンプルなモーダルコンポーネントを例に、Render Props パターンの実装方法を示す。
 
 ```tsx
 type Props = {
@@ -367,7 +367,7 @@ export const Presentational = memo(function Presentational(props: Props) {
 
 ### Compound パターン
 
-関連するコンポーネントをグループ化し、直感的な API を提供する設計パターンです。親コンポーネントと子コンポーネント間で状態を共有し、密接に連携するコンポーネント群を 1 つのインターフェースとして提供します。
+関連するコンポーネントをグループ化し、直感的な API を提供する設計パターン。親コンポーネントと子コンポーネント間で状態を共有し、密接に連携するコンポーネント群を 1 つのインターフェースとして提供する。
 
 #### 構成要素
 
@@ -426,7 +426,7 @@ export const Presentational = memo(function Presentational(props: Props) {
 
 #### 実装例
 
-タブコンポーネントを例に、Compound パターンの実装方法を示します。
+タブコンポーネントを例に、Compound パターンの実装方法を示す。
 
 ```tsx
 import { createContext, useContext, useState, memo } from "react";
