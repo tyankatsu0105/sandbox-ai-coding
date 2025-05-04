@@ -1,10 +1,10 @@
 # AI エージェント向けのドキュメント
 
-AI エージェントが参照する指示ファイルを生成するために、ドキュメントを集約する場所です。
+AI エージェントが参照する指示ファイルを生成するために、ドキュメントを集約する場所。
 
 ## ディレクトリの理由
 
-AI エージェントによって指示ファイルの参照先が統一されておらず、ドキュメントをここに書けばよいという場所が存在しません。ドキュメントを書く場所を集約し、各エージェントが参照する指示ファイルを生成することが目的です。
+AI エージェントによって指示ファイルの参照先が統一されておらず、ドキュメントを書く場所を集約し、各エージェントが参照する指示ファイルを生成することを目的とする。
 
 ## サポート対象
 
@@ -16,26 +16,26 @@ AI エージェントによって指示ファイルの参照先が統一され�
 ## ディレクトリの構成
 
 - custom-prompts
-  - 各エージェントのカスタムプロンプトを格納するディレクトリです。
+  - 各エージェントのカスタムプロンプトを格納するディレクトリ。
     - Roo Code
-      - .roomodes に custom-prompts のドキュメントの内容を転機します。
+      - .roomodes に custom-prompts のドキュメントの内容を転機する。
       - https://docs.roocode.com/advanced-usage/custom-modes
     - GitHub Copilot
-      - .github/prompts に custom-prompts のドキュメントの内容を転機します。
+      - .github/prompts に custom-prompts のドキュメントの内容を転機する。
       - https://code.visualstudio.com/docs/copilot/copilot-customization#_reusable-prompt-files-experimental
 - rules
-  - 各エージェントのルールを格納するディレクトリです。
+  - 各エージェントのルールを格納するディレクトリ。
     - Roo Code
-      - .roorules に rules のドキュメントの内容を転機します。
+      - .roorules に rules のドキュメントの内容を転機する。
       - https://docs.roocode.com/advanced-usage/custom-instructions
     - GitHub Copilot
-      - .github/copilot-instructions.md に rules のドキュメントの内容を転機します。 -https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file
+      - .github/copilot-instructions.md に rules のドキュメントの内容を転機する。 -https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file
     - Cursor
-      - .cursor/rules に rules のドキュメントの内容を転機します。
+      - .cursor/rules に rules のドキュメントの内容を転機する。
       - https://docs.cursor.com/context/rules-for-ai
 - scripts
-  - 各エージェントの設定ファイルを生成するスクリプトを格納するディレクトリです。
+  - 各エージェントの設定ファイルを生成するスクリプトを格納するディレクトリ。
     - gen-prompts.ts
-      - custom-prompts の内容をもとにファイルを生成します。
+      - custom-prompts の内容をもとにファイルを生成する。
     - gen-rules.ts
-      - rules の内容をもとにファイルを生成します。
+      - rules の内容をもとにファイルを生成する。

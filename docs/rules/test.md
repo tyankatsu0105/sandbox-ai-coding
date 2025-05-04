@@ -1,16 +1,16 @@
 # テスト
 
-テストを書く際のルールやガイドラインを以下に示します。これらのルールはテストコードを書く際に重要です。
+テストを書く際のルールやガイドラインを以下に示す。これらのルールはテストコードを書く際に重要。
 
 ## 前提
 
-- テストケース名は日本語で書きましょう
-  - 日本語が母国語の開発者が多いため
+- テストケース名は日本語で書け。
+  - 日本語が母国語の開発者が多いため。
 
 ## Type Test
 
-[expect-type](https://github.com/mmkal/expect-type)を使って型のテストを行う。  
-Jest では expect-type によるアサーションはテストできないので、`tsc`による型チェックによってテストする。
+[expect-type](https://github.com/mmkal/expect-type)を使って型のテストを行え。
+Jest では expect-type によるアサーションはテストできないので、`tsc`による型チェックによってテストしろ。
 
 ```bash
 npm run type-check
@@ -41,7 +41,7 @@ describe("updateUserInformation", () => {
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-12-structure-tests-by-the-aaa-pattern
 
 - フォーマットが固まっていると、テストの内容理解がはかどるため。
-- 各パートは空行で区切ること。コメントで`// Arrange`のように説明は書かなくていい。
+- 各パートは空行で区切れ。コメントで`// Arrange`のように説明は書かなくていい。
 
 例：
 
@@ -66,14 +66,14 @@ it("", () => {
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F13-describe-expectations-in-a-product-language-use-bdd-style-assertions
 
-- 簡潔なテストケースにし、テストコードの理解を容易にするため。
+- 簡潔なテストケースにしろ。テストコードの理解を容易にするため。
 
 ### 内部処理をテストしない
 
 https://github.com/goldbergyoni/javascript-testing-best-practices#-%EF%B8%8F-14-stick-to-black-box-testing-test-only-public-methods
 
-- 内部処理をテストすると、テストコストが増えるため。
-- 該当の処理に依存している処理のテストさえ通っていれば、内部処理のテストは不要のため。
+- 内部処理をテストするな。テストコストが増えるため。
+- 該当の処理に依存している処理のテストさえ通っていれば、内部処理のテストは不要。
 
 ### 実際に使われるであろう値を使ってテストする
 

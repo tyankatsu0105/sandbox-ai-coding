@@ -1,10 +1,10 @@
 # コンポーネント設計
 
-コードを書く際のルールやガイドラインを以下に示します。これらのルールは、コードの可読性、保守性、拡張性を高めるために重要です。
+コードを書く際のルールやガイドラインを以下に示す。これらのルールは、コードの可読性、保守性、拡張性を高めるために重要。
 
 ## コンポーネントの基本構造
 
-コンポーネントを新しく作る場合は、以下のファイル構成に従ってください：
+コンポーネントを新しく作る場合は、以下のファイル構成に従え：
 
 - `index.ts`
   - `container.tsx`のコンポーネントをエクスポート
@@ -36,8 +36,8 @@
 
 ### styled-components の使用
 
-- [styled-components](https://styled-components.com/docs)を使用すること
-- それ以外の方法は使用しないこと
+- [styled-components](https://styled-components.com/docs)を使用しろ。
+- それ以外の方法は使用するな。
 
 ```tsx
 import styled from "styled-components";
@@ -47,21 +47,21 @@ const StyledButton = styled.button``;
 
 ### コンポーネント命名規則
 
-- styled-components で作成したコンポーネントは`Styled`接頭辞をつける
-- 一般コンポーネントと区別するため
+- styled-components で作成したコンポーネントは`Styled`接頭辞をつけろ。
+- 一般コンポーネントと区別するため。
 - 例：`StyledButton`, `StyledContainer`, `StyledHeader`
 
 ### クラス名の使用制限
 
-- 固定の`className`を指定しない
-- 上流からのスタイル上書きを防ぐため
+- 固定の`className`を指定するな。
+- 上流からのスタイル上書きを防ぐため。
 - 例：
   - ❌ `className="modal"`
   - ⭕️ ` const StyledModal = styled.div``;  `
 
 ### 動的スタイルの適用
 
-再計算されるスタイルは style props を使用してください：
+再計算されるスタイルは style props を使用しろ：
 
 #### 良い例
 
