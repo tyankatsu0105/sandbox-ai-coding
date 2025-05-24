@@ -40,5 +40,8 @@
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
   // https://code.visualstudio.com/docs/copilot/copilot-customization#_reusable-prompt-files-experimental
   "chat.promptFiles": true,
-  "github.copilot.chat.reviewSelection.enabled": false
+  "github.copilot.chat.reviewSelection.enabled": false,
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true
+  }
 }

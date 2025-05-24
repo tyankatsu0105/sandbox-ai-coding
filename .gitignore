@@ -43,3 +43,5 @@ next-env.d.ts
 memory-bank/**/*
 !memory-bank/.gitkeep
 *storybook.log
+
+.roo/mcp.json

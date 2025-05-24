@@ -22,84 +22,13 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 ## 準備
 
 1. [サポートされている AI エージェント、エディタ](./docs/README.md)を利用可能な状態にする
-2. memory bank の概念を AI に持たせる
-   - Cline
-     - https://docs.cline.bot/improving-your-prompting-skills/custom-instructions-library/cline-memory-bank
+2. MCP の設定を行う
+
    - Roo Code
-     - https://github.com/GreatScottyMac/roo-code-memory-bank
-   - AI エージェントに、`Update Memory Bank`、または `UMB` と伝え、memory-bank の更新を行わせる
-     - 以下のファイルが memory-bank ディレクトリに追加されていることを確認する
-       - activeContext.md
-       - productContext.md
-       - progress.md
-       - projectbrief.md
-       - systemPatterns.md
-       - techContext.md
-3. MCP の設定を行う
-   - MCP の設定ファイルで以下の MCP が利用可能な状態にする
-     - GitHub
-       - https://github.com/modelcontextprotocol/servers/tree/main/src/github
-     - Notion
-       - https://github.com/orbit-logistics/notion-mcp-server
-     - Slack
-       - https://github.com/modelcontextprotocol/servers/tree/main/src/slack
-     - Figma
-       - https://github.com/GLips/Figma-Context-MCP
-     - Sentry
-       - https://github.com/modelcontextprotocol/servers/tree/main/src/sentry
+     - [.roo/mcp.json](./.roo/mcp.json)を作成
+       - [./.roo/mcp.json.example](./.roo/mcp.json.example)を参考に設定する
 
-```json
-{
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "ASDF_NODEJS_VERSION": "20.11.1",
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "<your_github_token>"
-      }
-    },
-    "slack": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-slack"],
-      "env": {
-        "ASDF_NODEJS_VERSION": "20.11.1",
-        "SLACK_BOT_TOKEN": "<xoxb始まりのslack-bot-token>",
-        "SLACK_TEAM_ID": "<T始まりのslack-team-id>"
-      }
-    },
-    "notion": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@orbit-logistics/notion-mcp-server",
-        "-t",
-        "<your_notion_token>"
-      ],
-      "env": {
-        "ASDF_NODEJS_VERSION": "20.11.1"
-      }
-    },
-    "figma": {
-      "command": "npx",
-      "args": ["-y", "figma-developer-mcp", "--stdio"],
-      "env": {
-        "ASDF_NODEJS_VERSION": "20.11.1",
-        "FIGMA_API_KEY": "<your_figma_token>"
-      }
-    },
-    "sentry": {
-      "command": "uvx",
-      "args": ["mcp-server-sentry", "--auth-token", "<your_sentry_token>"],
-      "env": {
-        "ASDF_UV_VERSION": "0.6.0"
-      }
-    }
-  }
-}
-```
-
-4. Auto Approve の設定を行う
+3. Auto Approve の設定を行う
    - いろいろな権限を管理できる場合は、好きな権限を選択する
    - Allowed Auto-Execute Commands が設定できる場合は、以下のコマンドを推奨
      - npm install

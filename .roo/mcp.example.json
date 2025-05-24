@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<your_github_token>"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "<xoxb始まりのslack-bot-token>",
+        "SLACK_TEAM_ID": "<T始まりのslack-team-id>"
+      }
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "ASDF_NODEJS_VERSION": "20.11.1"
+      }
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--stdio"],
+      "env": {
+        "FIGMA_API_KEY": "<your_figma_token>"
+      }
+    },
+    "sentry": {
+      "command": "uvx",
+      "args": ["mcp-server-sentry", "--auth-token", "<your_sentry_token>"],
+      "env": {}
+    }
+  }
+}
