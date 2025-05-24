@@ -56,8 +56,20 @@ async function main(): Promise<void> {
       );
 
       const content = await readFile(sourcePath, "utf-8");
+      const updatedContent = content.replace(
+        /\((\.\/(.*?)\.md)\)/g,
+        (_, fullPath, fileName) => {
+          const matchingFile = files.find((f) => f === `${fileName}.md`);
+          if (matchingFile) {
+            const targetFileName = `${fileName}.instructions`;
+            return `(${fullPath.replace(fileName, targetFileName)})`;
+          }
+          return _;
+        }
+      );
+
       const modifiedContent =
-        AUTO_GENERATED_WARNING + parseFrontmatterForCopilot(content);
+        AUTO_GENERATED_WARNING + parseFrontmatterForCopilot(updatedContent);
       await writeFile(targetPath, modifiedContent, "utf-8");
       console.info(`${targetPath} の生成が完了しました`);
     }

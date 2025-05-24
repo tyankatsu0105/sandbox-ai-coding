@@ -264,38 +264,38 @@ applyTo: "**"
 状況に応じて適切なドキュメントを参照しろ。
 
 - security.md
-  - [path](./security.md)
+  - [path](./security.instructions.md)
   - ref：always
   - description: セキュリティに関するガイドライン
 - commands.md
-  - [path](./commands.md)
+  - [path](./commands.instructions.md)
   - ref：コマンドを利用する時
   - description: プロジェクトで利用されるコマンド一覧
 - git.md
-  - [path](./git.md)
+  - [path](./git.instructions.md)
   - ref：Git を操作する時
   - description: Git の使い方
 - project.md
-  - [path](./project.md)
+  - [path](./project.instructions.md)
   - ref：プロジェクトの全容を把握する時
   - description: プロジェクトの概要
 - architecture.md
-  - [path](./architecture.md)
+  - [path](./architecture.instructions.md)
   - ref：プロジェクトの全容を把握する時
   - description: プロジェクトのアーキテクチャ
 - coding.md
-  - [path](./coding.md)
+  - [path](./coding.instructions.md)
   - ref：なにかしら実装を行う時
   - description: コーディングに関するガイドライン
 - component.md
-  - [path](./component.md)
+  - [path](./component.instructions.md)
   - ref：コンポーネントを実装する時
   - description: コンポーネントの設計
 - test.md
-  - [path](./test.md)
+  - [path](./test.instructions.md)
   - ref：テストを実装する時
   - description: テストに関するガイドライン
 - memory-bank.md
-  - [path](./memory-bank.md)
+  - [path](./memory-bank.instructions.md)
   - ref：always
   - description: AI エージェントのメモリバンク。初期化するときは「initialize memory bank」と尋ねる
