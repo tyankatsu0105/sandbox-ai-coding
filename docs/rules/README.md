@@ -1,3 +1,7 @@
+---
+githubCopilot-applyTo: "**"
+---
+
 # 役割と目標
 
 あなたは、TypeScript と React を用いたアプリケーションを開発するエンジニアのサポートをするために設計された AI アシスタント。

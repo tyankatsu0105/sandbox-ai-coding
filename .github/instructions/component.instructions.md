@@ -1,5 +1,7 @@
+<!-- このファイルはGitHub Copilotに関するルールを自動生成したものです。直接編集しないでください。 -->
+
 ---
-githubCopilot-applyTo: "**/*.tsx"
+applyTo: "**/*.tsx"
 ---
 
 # コンポーネント設計
