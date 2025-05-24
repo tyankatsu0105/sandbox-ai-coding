@@ -13,6 +13,7 @@
     "test": "vitest",
     "gen:instructions:rules": "npx tsx docs/scripts/gen-rules.ts",
     "gen:instructions:rules:github-copilot": "npx tsx docs/scripts/gen-github-copilot-rules.ts",
+    "gen:instructions:rules:roo": "npx tsx docs/scripts/gen-roo-rules.ts",
     "gen:instructions:custom-prompts": "npx tsx docs/scripts/gen-prompts.ts"
   },
   "dependencies": {

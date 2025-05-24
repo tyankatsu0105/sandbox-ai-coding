@@ -298,4 +298,4 @@ applyTo: "**"
 - memory-bank.md
   - [path](./memory-bank.instructions.md)
   - ref：always
-  - description: AI エージェントのメモリバンク。初期化するときは「initialize memory bank」と尋ねる
+  - description: AI エージェントのメモリバンク。初期化するときは「initialize memory bank」と尋ねる。更新時には「update memory bank」と尋ねる。

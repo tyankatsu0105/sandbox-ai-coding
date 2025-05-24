@@ -11,7 +11,6 @@ AI エージェントによって指示ファイルの参照先が統一され�
 - [Cline](https://github.com/cline/cline)
 - [Roo Code](https://github.com/RooVetGit/Roo-Code)
 - [GitHub Copilot](https://github.com/features/copilot)
-- [Cursor](https://www.cursor.com/)
 
 ## ディレクトリの構成
 
@@ -30,9 +29,6 @@ AI エージェントによって指示ファイルの参照先が統一され�
       - https://docs.roocode.com/advanced-usage/custom-instructions
     - GitHub Copilot
       - .github/copilot-instructions.md に rules のドキュメントの内容を転機する。 -https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file
-    - Cursor
-      - .cursor/rules に rules のドキュメントの内容を転機する。
-      - https://docs.cursor.com/context/rules-for-ai
 - scripts
   - 各エージェントの設定ファイルを生成するスクリプトを格納するディレクトリ。
     - gen-prompts.ts

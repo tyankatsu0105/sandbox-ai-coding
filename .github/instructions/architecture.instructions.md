@@ -31,8 +31,6 @@ applyTo: "**"
 $ tree -a -d -I 'node_modules|.git'
 
 .
-├── .cursor
-│   └── rules
 ├── .github
 │   └── prompts
 ├── .roo
@@ -55,10 +53,6 @@ $ tree -a -d -I 'node_modules|.git'
     │   └── text
     └── utilities
 ```
-
-### .cursor
-
-- Cursor の設定ファイルを格納するディレクトリ
 
 ### .github
 

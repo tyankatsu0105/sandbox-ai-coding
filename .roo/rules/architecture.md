@@ -1,6 +1,5 @@
----
-githubCopilot-applyTo: "**"
----
+<!-- このファイルはdocs/rules以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、docs/rules以下のファイルを編集し、scriptを実行してください。 -->
+
 
 # アプリケーションのアーキテクチャ
 
@@ -21,7 +20,7 @@ githubCopilot-applyTo: "**"
 
 - React
 
-その他利用しているライブラリは、[package.json](/package.json)を参照しろ。
+その他利用しているライブラリは、[package.json](../../package.json)を参照しろ。
 
 ## ストラクチャ
 
