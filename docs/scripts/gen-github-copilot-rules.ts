@@ -30,10 +30,22 @@ function parseFrontmatterForCopilot(content: string): string {
     "g"
   );
 
-  const updatedFrontmatter = match[1].replace(regex, (match, p1, p2) => {
-    const index = frontmatterKeys.indexOf(p1);
-    return `${frontmatterValues[index]}: ${p2}`;
-  });
+  // Frontmatter をフィルタリングして、frontmatterMap に定義されたキーのみを残す
+  const filteredFrontmatter = match[1]
+    .split("\n")
+    .filter((line) => {
+      const key = line.split(":")[0]?.trim();
+      return frontmatterKeys.includes(key);
+    })
+    .join("\n");
+
+  const updatedFrontmatter = filteredFrontmatter.replace(
+    regex,
+    (match, p1, p2) => {
+      const index = frontmatterKeys.indexOf(p1);
+      return `${frontmatterValues[index]}: ${p2}`;
+    }
+  );
 
   return content.replace(frontmatterRegex, `---\n${updatedFrontmatter}\n---`);
 }
