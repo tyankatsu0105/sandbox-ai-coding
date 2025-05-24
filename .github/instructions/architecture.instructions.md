@@ -23,7 +23,7 @@ applyTo: "**"
 
 - React
 
-その他利用しているライブラリは、[package.json](/package.json)を参照しろ。
+その他利用しているライブラリは、[package.json](../../package.json)を参照しろ。
 
 ## ストラクチャ
 
