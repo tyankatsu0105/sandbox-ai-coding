@@ -10,7 +10,6 @@ AI エージェントを使った実装環境を、想定しうる環境で構�
 - GitHub Copilot
 - GitHub Copilot(code completion 機能のみ) + Cline
 - GitHub Copilot(code completion 機能のみ) + Roo Code(VSCode LM API, copilot - claude-3.5-sonnet)
-- Cursor
 
 ## できること
 
