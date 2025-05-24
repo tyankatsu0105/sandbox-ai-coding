@@ -56,19 +56,29 @@ async function main(): Promise<void> {
       );
 
       const content = await readFile(sourcePath, "utf-8");
-      const updatedContent = content
-        .replace(/\((\.\/(.*?)\.md)\)/g, (_, fullPath, fileName) => {
-          const matchingFile = files.find((f) => f === `${fileName}.md`);
-          if (matchingFile) {
-            const targetFileName = `${fileName}.instructions`;
-            return `(${fullPath.replace(fileName, targetFileName)})`;
+      const updatedContent = updateLinks(content, files);
+
+      function updateLinks(content: string, files: string[]): string {
+        const relativeMarkdownLinkRegex = /\((\.\/(.*?)\.md)\)/g;
+        const rootPathLinkRegex = /\((\/.*?)\)/g;
+
+        const updatedRelativeLinks = content.replace(
+          relativeMarkdownLinkRegex,
+          (_, fullPath, fileName) => {
+            const matchingFile = files.find((f) => f === `${fileName}.md`);
+            if (matchingFile) {
+              const targetFileName = `${fileName}.instructions`;
+              return `(${fullPath.replace(fileName, targetFileName)})`;
+            }
+            return _;
           }
-          return _;
-        })
-        .replace(
-          /\((\/.*?)\)/g,
+        );
+
+        return updatedRelativeLinks.replace(
+          rootPathLinkRegex,
           (_, rootPath) => `(../../${rootPath.slice(1)})`
         );
+      }
 
       const modifiedContent =
         AUTO_GENERATED_WARNING + parseFrontmatterForCopilot(updatedContent);
