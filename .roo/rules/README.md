@@ -260,6 +260,10 @@
 以下のドキュメントには、タスク実行に必要な詳細情報が記載されている。
 状況に応じて適切なドキュメントを参照しろ。
 
+- architecture.md
+  - [path](./architecture.instructions.md)
+  - ref：プロジェクトの全容を把握する時
+  - description: プロジェクトのアーキテクチャ
 - security.md
   - [path](./security.instructions.md)
   - ref：always
@@ -276,10 +280,6 @@
   - [path](./project.instructions.md)
   - ref：プロジェクトの全容を把握する時
   - description: プロジェクトの概要
-- architecture.md
-  - [path](./architecture.instructions.md)
-  - ref：プロジェクトの全容を把握する時
-  - description: プロジェクトのアーキテクチャ
 - coding.md
   - [path](./coding.instructions.md)
   - ref：なにかしら実装を行う時
