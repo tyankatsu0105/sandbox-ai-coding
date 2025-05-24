@@ -4,19 +4,9 @@ import { join } from "path";
 const AUTO_GENERATED_WARNING = `<!-- このファイルはdocs/rules以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、docs/rules以下のファイルを編集し、scriptを実行してください。 -->\n\n`;
 
 /**
- * Frontmatterのメタデータの変換表
+ * Frontmatter を解析する関数
  */
-const frontmatterMap = {
-  /**
-   * @see: https://code.visualstudio.com/docs/copilot/copilot-customization#_use-instructionsmd-files
-   */
-  "githubCopilot-applyTo": "applyTo",
-};
-
-/**
- * Frontmatter を解析し、GitHub Copilot に関連する部分を処理する関数
- */
-function parseFrontmatterForCopilot(content: string): string {
+export function parseFrontmatter(content: string): string {
   const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
   const match = content.match(frontmatterRegex);
   if (!match) {
@@ -30,7 +20,6 @@ function parseFrontmatterForCopilot(content: string): string {
     "g"
   );
 
-  // Frontmatter をフィルタリングして、frontmatterMap に定義されたキーのみを残す
   const filteredFrontmatter = match[1]
     .split("\n")
     .filter((line) => {
@@ -51,9 +40,65 @@ function parseFrontmatterForCopilot(content: string): string {
 }
 
 /**
+ * リンク文字列を置換する関数
+ */
+export function updateLinks({
+  content,
+  files,
+}: {
+  content: string;
+  files: string[];
+}): string {
+  const relativeMarkdownLinkRegex = /\((\.\/(.*?)\.md)\)/g;
+  const rootPathLinkRegex = /\((\/.*?)\)/g;
+
+  const updatedRelativeLinks = content.replace(
+    relativeMarkdownLinkRegex,
+    (_, fullPath, fileName) => {
+      const matchingFile = files.find((f) => f === `${fileName}.md`);
+      if (matchingFile) {
+        const targetFileName = `${fileName}.instructions`;
+        return `(${fullPath.replace(fileName, targetFileName)})`;
+      }
+      return _;
+    }
+  );
+
+  return updatedRelativeLinks.replace(
+    rootPathLinkRegex,
+    (_, rootPath) => `(../../${rootPath.slice(1)})`
+  );
+}
+
+/**
+ * ファイルをリネームしつつコピーする関数
+ */
+export async function renameAndCopyFile({
+  targetPath,
+  content,
+}: {
+  targetPath: string;
+  content: string;
+}): Promise<void> {
+  const modifiedContent = AUTO_GENERATED_WARNING + parseFrontmatter(content);
+  await writeFile(targetPath, modifiedContent, "utf-8");
+  console.info(`${targetPath} の生成が完了しました`);
+}
+
+/**
+ * Frontmatterのメタデータの変換表
+ */
+const frontmatterMap = {
+  /**
+   * @see: https://code.visualstudio.com/docs/copilot/copilot-customization#_use-instructionsmd-files
+   */
+  "githubCopilot-applyTo": "applyTo",
+};
+
+/**
  * メイン処理
  */
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   try {
     const rulesDir = join(process.cwd(), "docs", "rules");
     const files = await (await import("fs/promises")).readdir(rulesDir);
@@ -68,34 +113,11 @@ async function main(): Promise<void> {
       );
 
       const content = await readFile(sourcePath, "utf-8");
-      const updatedContent = updateLinks(content, files);
-
-      function updateLinks(content: string, files: string[]): string {
-        const relativeMarkdownLinkRegex = /\((\.\/(.*?)\.md)\)/g;
-        const rootPathLinkRegex = /\((\/.*?)\)/g;
-
-        const updatedRelativeLinks = content.replace(
-          relativeMarkdownLinkRegex,
-          (_, fullPath, fileName) => {
-            const matchingFile = files.find((f) => f === `${fileName}.md`);
-            if (matchingFile) {
-              const targetFileName = `${fileName}.instructions`;
-              return `(${fullPath.replace(fileName, targetFileName)})`;
-            }
-            return _;
-          }
-        );
-
-        return updatedRelativeLinks.replace(
-          rootPathLinkRegex,
-          (_, rootPath) => `(../../${rootPath.slice(1)})`
-        );
-      }
-
-      const modifiedContent =
-        AUTO_GENERATED_WARNING + parseFrontmatterForCopilot(updatedContent);
-      await writeFile(targetPath, modifiedContent, "utf-8");
-      console.info(`${targetPath} の生成が完了しました`);
+      const updatedContent = updateLinks({ content, files });
+      await renameAndCopyFile({
+        targetPath,
+        content: updatedContent,
+      });
     }
   } catch (error) {
     console.error("ファイルの生成に失敗しました:", error);
