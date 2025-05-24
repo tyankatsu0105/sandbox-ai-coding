@@ -1,10 +1,10 @@
 import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
 
-const AUTO_GENERATED_WARNING = `<!-- このファイルはGitHub Copilotに関するルールを自動生成したものです。直接編集しないでください。 -->\n\n`;
+const AUTO_GENERATED_WARNING = `<!-- このファイルはdocs/rules以下のファイルによって自動生成されます。直接書き込むことを禁止します。編集したい場合は、docs/rules以下のファイルを編集し、scriptを実行してください。 -->\n\n`;
 
 /**
- * Frontmatterのメタデータを表すインターフェース
+ * Frontmatterのメタデータの変換表
  */
 const frontmatterMap = {
   /**
