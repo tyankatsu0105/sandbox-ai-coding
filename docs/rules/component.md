@@ -32,6 +32,38 @@
   - interaction test は行わない
   - props による UI 表示の確認
 
+```mermaid
+graph TD
+    index[index.ts] --> container[container.tsx]
+    index --> facade[facade.ts]
+
+    container --> presentational[presentational.tsx]
+    container --> facade
+
+    container --> container_stories[container.stories.tsx]
+    presentational --> presentational_stories[presentational.stories.tsx]
+
+    facade --> facade_test[facade.test.ts]
+
+    subgraph Tests
+        container_stories
+        facade_test
+        presentational_stories
+    end
+
+    subgraph Core Components
+        index
+        container
+        presentational
+        facade
+    end
+
+    classDef core fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef test fill:#cef,stroke:#333,stroke-width:2px;
+    class index,container,presentational,facade core;
+    class container_stories,facade_test,presentational_stories test;
+```
+
 ## スタイリングのルール
 
 ### styled-components の使用
