@@ -1,3 +1,0 @@
----
-githubCopilot-applyTo: "**"
----
