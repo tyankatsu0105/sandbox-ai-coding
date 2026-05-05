@@ -1,0 +1,33 @@
+// rulesync.jsonc
+{
+  "$schema": "https://github.com/dyoshikawa/rulesync/releases/latest/download/config-schema.json",
+
+  // List of tools to generate configurations for. You can specify "*" to generate all tools.
+  "targets": ["cursor", "claudecode", "copilot"],
+
+  // Features to generate. You can specify "*" to generate all features.
+  "features": ["rules", "skills", "subagents", "hooks"],
+
+  // Alternatively, you can use object format to specify features per target:
+  // "features": {
+  //   "claudecode": ["rules", "commands"],
+  //   "cursor": ["rules", "mcp"],
+  // },
+
+  // Output root directories to generate files into.
+  // Basically, you can specify `["."]` only.
+  // However, for example, if your project is a monorepo and you have to launch the AI agent at each package directory, you can specify multiple output roots.
+  //
+  // The legacy field name `baseDirs` is still accepted as a deprecated alias
+  // and will be removed in a future major release. Migrate to `outputRoots`.
+  "outputRoots": ["."],
+
+  // Delete existing files before generating
+  "delete": true,
+
+  // Verbose output
+  "verbose": false,
+
+  // Silent mode - suppress all output (except errors)
+  "silent": false,
+}
