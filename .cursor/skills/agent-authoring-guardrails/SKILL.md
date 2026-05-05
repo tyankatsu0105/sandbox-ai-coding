@@ -13,6 +13,13 @@ The goal is to make instructions clear, testable, and safe while avoiding noisy 
 - After edits, run `npm run generate-docs` from the project root.
 - Treat generation as required validation, not optional cleanup.
 
+## Communication Rules for Responses
+
+- Answer first. If further action might help, ask the user after answering.
+- Do not apologize. Do not include gratitude phrases.
+- When implementing or changing anything, explain the reason and evidence for that decision.
+- When explaining a concept, use plain language that a high school student can follow.
+
 ## Quick Checklist
 
 - Define scope first: what this instruction applies to, and what it does not.
@@ -75,25 +82,31 @@ The goal is to make instructions clear, testable, and safe while avoiding noisy 
 # Rule Name
 
 ## Intent
+
 One-sentence objective.
 
 ## Applies When
+
 - Condition A
 - Condition B
 
 ## Must
+
 - Required behavior 1
 - Required behavior 2
 
 ## Must Not
+
 - Prohibited behavior 1
 
 ## Verification
+
 - Command or check:
   - `npm test`
   - `npm run lint`
 
 ## Completion Criteria
+
 - Observable result 1
 - Observable result 2
 ```
@@ -110,13 +123,16 @@ targets: ["*"]
 # My Skill
 
 ## When To Use
+
 - Trigger condition 1
 - Trigger condition 2
 
 ## When Not To Use
+
 - Out-of-scope condition
 
 ## Procedure
+
 1. Gather context.
 2. Decide approach with constraints.
 3. Apply minimal change.
@@ -124,6 +140,7 @@ targets: ["*"]
 5. Report results and remaining risks.
 
 ## Output Requirements
+
 - Include changed files.
 - Include verification outcome.
 - Include unresolved risks.
