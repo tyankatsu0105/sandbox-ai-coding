@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "stop": [
+      {
+        "command": "node .rulesync/hooks/run-generate-docs-if-rulesync-edited.mjs",
+        "timeout": 300
+      }
+    ]
+  },
+  "copilot": {
+    "hooks": {
+      "sessionEnd": [
+        {
+          "command": "node .rulesync/hooks/run-generate-docs-if-rulesync-edited.mjs",
+          "timeout": 300
+        }
+      ]
+    }
+  }
+}

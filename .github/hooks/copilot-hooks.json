@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "node .rulesync/hooks/run-generate-docs-if-rulesync-edited.mjs",
+        "timeoutSec": 300
+      }
+    ]
+  }
+}

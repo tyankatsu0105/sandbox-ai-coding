@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .rulesync/hooks/run-generate-docs-if-rulesync-edited.mjs",
+            "timeout": 300
+          }
+        ]
+      }
+    ]
+  }
+}
