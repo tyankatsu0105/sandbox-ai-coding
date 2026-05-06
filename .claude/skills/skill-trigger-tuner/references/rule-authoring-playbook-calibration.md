@@ -19,11 +19,13 @@ Reduce false positives for non-rule tasks while preserving strong recall for rul
 ## Changes Applied
 
 1. Tightened frontmatter description:
+
 - explicit focus on rule scope design
 - precedence and conflict control
 - concise and testable rule behavior
 
 2. Added explicit non-goals:
+
 - skill or subagent creation
 - general code reviews not tied to instruction/rule configuration
 

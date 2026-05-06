@@ -37,13 +37,16 @@ Path: `.github/copilot-instructions.md`
 # Repository Instructions
 
 ## Project context
+
 - This repository uses TypeScript and Next.js.
 
 ## Coding conventions
+
 - Prefer explicit return types on exported functions.
 - Keep API handlers focused and validate inputs.
 
 ## References
+
 - API conventions: docs/api-conventions.md
 ```
 

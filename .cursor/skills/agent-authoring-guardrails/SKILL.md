@@ -25,13 +25,7 @@ The goal is to make instructions clear, testable, and safe while avoiding noisy 
 - Edit source files under `.rulesync/` when changing rules or skills.
 - After edits, run `npm run generate-docs` from the project root.
 - Treat generation as required validation, not optional cleanup.
-
-## Communication Rules for Responses
-
-- Answer first. If further action might help, ask the user after answering.
-- Do not apologize. Do not include gratitude phrases.
-- When implementing or changing anything, explain the reason and evidence for that decision.
-- When explaining a concept, use plain language that a high school student can follow.
+- Response style policy is defined in `.rulesync/rules/agent-authoring-response-style.md`.
 
 ## Quick Checklist
 

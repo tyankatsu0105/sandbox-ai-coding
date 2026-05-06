@@ -45,30 +45,37 @@ Design to minimize conflicts instead of relying on precedence alone.
 ## Authoring Procedure
 
 1. Define the problem and repetition pattern.
+
 - Identify repeated guidance that appears in prompts or reviews.
 - Confirm this is frequent enough to justify a persistent rule.
 
 2. Choose rule scope.
+
 - Decide global vs repository vs path-specific scope.
 - For file-targeted behavior, use path/glob constraints.
 
 3. Draft concise instructions.
+
 - Use action-oriented language with explicit boundaries.
 - Include must and must-not behavior when relevant.
 
 4. Add references and examples.
+
 - Link to canonical files or templates instead of duplicating content.
 - Include a short example for non-obvious workflows.
 
 5. Check precedence and overlap.
+
 - Verify this rule does not conflict with existing higher/lower layer rules.
 - If overlap exists, split or narrow the rule.
 
 6. Validate behavior.
+
 - Test on realistic prompts/files in and out of scope.
 - Record false positives and false negatives.
 
 7. Refine and ship.
+
 - Tighten scope and wording based on validation.
 - Keep changes small and auditable.
 
