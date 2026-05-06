@@ -19,11 +19,13 @@ Reduce false positives where this tuner skill triggers for general skill authori
 ## Changes Applied
 
 1. Tightened frontmatter description to explicit purpose:
+
 - existing skill auto-invocation behavior
 - false positive / false negative reduction
 - structured trigger-prompt testing
 
 2. Added explicit non-goals:
+
 - creating a new skill from scratch
 - editing rule/skill content quality without trigger evaluation
 

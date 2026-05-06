@@ -19,6 +19,7 @@ Reduce false positives for non-framework coding tasks while preserving high reca
 ## Changes Applied
 
 1. Tightened frontmatter description to explicit artifact scope:
+
 - app router files
 - route handlers
 - proxy
@@ -29,6 +30,7 @@ Reduce false positives for non-framework coding tasks while preserving high reca
 2. Added explicit `When To Use` section with concrete file and API contexts.
 
 3. Added explicit `When Not To Use` section:
+
 - generic TypeScript/React logic
 - SQL/CI/styling-only work
 - AI skill/rule authoring under .rulesync/
