@@ -1,10 +1,23 @@
 ---
 name: nextjs
-description: Next.js 16 (this project) has breaking API and convention changes from prior versions. Use when writing, editing, or reviewing any Next.js code — pages, layouts, routing, middleware, data fetching, caching, config, or CLI. Do NOT rely on training data for Next.js APIs; always consult the bundled docs.
+description: 'Next.js 16 guidance for this repository. Use when changing Next.js framework files or APIs: app router files, route handlers, proxy, data fetching, caching, next.config.ts, or Next.js CLI behavior. Always consult bundled Next.js docs before implementation.'
 ---
 # Next.js 16 — Agent Guide
 
 > **Warning:** This project uses **Next.js 16.x**, which contains breaking changes from prior versions. APIs, file conventions, and configuration you learned from training data may no longer be valid. Always check `node_modules/next/dist/docs/` before writing or modifying any Next.js code.
+
+## When To Use
+
+- Editing files under `app/` that depend on Next.js App Router behavior.
+- Updating route handlers (`app/**/route.ts`) or `proxy.ts` behavior.
+- Fixing or implementing Next.js-specific data fetching, caching, metadata, or navigation behavior.
+- Updating `next.config.ts` or using Next.js CLI commands.
+
+## When Not To Use
+
+- Generic TypeScript or React logic with no Next.js framework behavior involved.
+- Non-framework tasks like SQL tuning, CI troubleshooting, or styling-only work.
+- Authoring or tuning AI skills/rules files under `.rulesync/`.
 
 ## Must-Read Docs (local)
 

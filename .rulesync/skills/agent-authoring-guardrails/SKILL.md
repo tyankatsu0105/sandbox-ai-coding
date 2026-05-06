@@ -1,8 +1,9 @@
 ---
 name: agent-authoring-guardrails
 description: >-
-  Guidance for writing high-quality AI agent skills and rules.
-  Use when creating, reviewing, or refactoring SKILL.md and rule files.
+  Create, review, or refactor AI agent guidance files such as SKILL.md,
+  copilot-instructions.md, and rule files under .rulesync/. Use for instruction
+  quality, trigger boundaries, safety constraints, and testable wording.
 targets: ["*"]
 ---
 
@@ -10,6 +11,19 @@ targets: ["*"]
 
 Use this skill when you need to create or review guidance for AI coding agents.
 The goal is to make instructions clear, testable, and safe while avoiding noisy or conflicting rules.
+
+## When To Use
+
+- Creating or editing SKILL.md files.
+- Creating or editing AI rule files, including copilot instructions.
+- Reviewing instruction wording for ambiguity, safety, and testability.
+- Refactoring guidance that triggers too broadly or conflicts with other guidance.
+
+## When Not To Use
+
+- Implementing product features unrelated to agent instruction files.
+- Debugging runtime errors in application code.
+- Pure refactors that do not touch AI guidance behavior.
 
 ## Project-Specific Workflow
 
