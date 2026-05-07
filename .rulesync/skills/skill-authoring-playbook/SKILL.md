@@ -150,6 +150,10 @@ If portability is a priority, avoid platform-only fields unless they are require
 - Missing validation, especially for workflows with side effects.
 - Trigger text that is broad enough to fire on unrelated requests.
 
+## Notes For This Repository
+
+- Edit skills under `.rulesync/skills/`.
+
 ## Quality Gate (Ship Checklist)
 
 A skill is ready only if all are true:
@@ -206,11 +210,6 @@ description: <what it does, when to use it, when not to use it>
 - <evidence>
 ```
 
-## Notes For This Repository
-
-- Edit skills under `.rulesync/skills/`.
-- After edits, run `npm run generate-docs` from the project root.
-
 ## Execution Workflow (Practical)
 
 Use this exact sequence when authoring or refactoring a skill:
@@ -220,7 +219,6 @@ Use this exact sequence when authoring or refactoring a skill:
 3. Calibrate trigger behavior using `references/trigger-calibration-prompts.md`.
 4. If false positives remain high, narrow description and add non-goals.
 5. If false negatives remain high, add real user phrasing and trigger synonyms.
-6. Regenerate outputs with `npm run generate-docs`.
 
 Read `references/skill-quality-checklist.md` before finalizing content.
 Read `references/trigger-calibration-prompts.md` when tuning auto-invocation behavior.

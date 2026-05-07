@@ -125,4 +125,3 @@ Design to minimize conflicts instead of relying on precedence alone.
 ## Notes For This Repository
 
 - Author source content under `.rulesync/`.
-- Run `npm run generate-docs` after changes.
