@@ -2,8 +2,8 @@
 name: skill-authoring-playbook
 description: >-
   Author, review, or refactor SKILL.md guidance for reusable AI agent skills.
-  Use for scope design, trigger calibration, safety boundaries, and quality
-  validation of skill authoring artifacts.
+  Use to establish clear scope, design effective triggers, ensure safety, and
+  validate quality of skill authoring artifacts.
 targets: ["*"]
 ---
 
@@ -28,14 +28,18 @@ Use this skill to design high-quality skills that work well across major AI agen
 
 ## Core Principles (Cross-Agent Consensus)
 
+Prioritize in this order: first address **Scope & Design**, then **Implementation & Clarity**, then **Reliability & Safety**. This ensures the skill has a solid foundation before adding polish and safeguards.
+
+**Scope & Design** (establish what the skill owns and how to trigger it):
+
 1. One skill, one coherent job.
 2. Put trigger intent in `description` first and make it specific.
-3. Prefer instruction-only skills first; add scripts only when determinism or external tooling is required.
-4. Use progressive disclosure: keep `SKILL.md` concise, move heavy references into separate files.
-5. Write procedural guidance (how to solve a class of tasks), not single-instance answers.
-6. Include defaults and escape hatches; avoid option menus without a default.
-7. Add concrete gotchas and validation loops for fragile workflows.
-8. Calibrate invocation safety: side-effectful skills should require explicit invocation.
+3. Always start with instruction-only skills unless determinism or external tooling is explicitly required. Examples: scripts for file I/O, automation, deterministic workflows; guidance-only for conceptual tasks, review checklists, decision frameworks.
+4. Write procedural guidance (how to solve a class of tasks), not single-instance answers.
+
+**Implementation & Clarity** (make the skill easy to follow and adapt): 5. Use progressive disclosure: keep `SKILL.md` concise, move heavy references into separate files. 6. Include defaults and escape hatches; avoid option menus without a default.
+
+**Reliability & Safety** (ensure the skill works robustly and safely): 7. Add concrete gotchas and validation loops for fragile workflows. 8. Calibrate invocation safety: side-effectful skills should require explicit invocation.
 
 ## Portable Frontmatter Baseline
 

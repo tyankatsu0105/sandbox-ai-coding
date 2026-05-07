@@ -29,15 +29,23 @@ The goal is to make instructions clear, testable, and safe while avoiding noisy 
 
 ## Quick Checklist
 
+**Foundation (required first):**
 - Define scope first: what this instruction applies to, and what it does not.
+- State intent clearly and minimize ambiguity: define terms like "large change", "fast", "safe", "done".
+
+**Clarity (apply next):**
 - Prefer explicit triggers: when to invoke the skill or apply the rule.
 - Use action-oriented language: imperative, concrete verbs, no vague guidance.
-- Make requirements testable: include success criteria that can be verified.
-- Keep precedence clear: resolve conflicts between global rules and local exceptions.
-- Minimize ambiguity: define terms like "large change", "fast", "safe", "done".
-- Require verification: add lint, test, or runtime checks where applicable.
-- Avoid overfitting to one tool unless tool-specific behavior is required.
 - Keep content concise and modular: one file should solve one decision area.
+
+**Verification (ensure quality):**
+- Make requirements testable: include success criteria that can be verified.
+- Require verification: add lint, test, or runtime checks where applicable.
+
+**Reliability (resolve conflicts):**
+- Keep precedence clear: resolve conflicts between global rules and local exceptions.
+- Avoid tool-specific customization unless the project explicitly mandates it for a particular capability.
+- Treat generated output files as canonical: never edit synced files directly.
 
 ## Rule Writing Principles
 

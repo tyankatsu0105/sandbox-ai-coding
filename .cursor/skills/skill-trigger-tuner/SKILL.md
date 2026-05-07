@@ -29,13 +29,19 @@ Use this skill to improve how reliably a target skill triggers.
 
 ## Procedure
 
+**Initial Analysis:**
+
 1. Read the target `SKILL.md` and extract trigger boundaries from `description`.
 2. Run a positive and negative prompt set without explicit slash invocation.
 3. Classify each result as TP, FN, FP, or TN.
-4. If FN is high, add natural user phrasing and trigger synonyms.
-5. If FP is high, tighten boundaries and add explicit non-goals.
-6. Keep scope focused: one coherent job only.
-7. Re-test after each description change until trigger behavior is acceptable.
+
+**Adjustments for False Negatives:** 4. If FN is high, add natural user phrasing and trigger synonyms to the description.
+
+**Adjustments for False Positives:** 5. If FP is high, tighten boundaries and add explicit non-goals to the description.
+
+**Scope Guard:** 6. Keep scope focused on refining the trigger behavior of one specific skill at a time.
+
+**Validation:** 7. Re-test after each description change until trigger behavior is acceptable.
 
 ## Gotchas
 

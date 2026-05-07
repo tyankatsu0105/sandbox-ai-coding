@@ -10,7 +10,7 @@ Use this skill to design high-quality rules that are scoped correctly, easy to m
 
 - Creating or refactoring project rules.
 - Converting repeated prompt guidance into reusable rules.
-- Reducing rule conflicts across global, repo, and path-specific layers.
+- Minimizing conflicts across rule layers by narrowing scopes and applying precedence strategically.
 - Improving rule quality (clarity, specificity, and testability).
 
 ## When Not To Use
@@ -26,7 +26,7 @@ Use this skill to design high-quality rules that are scoped correctly, easy to m
 1. Keep rules short, self-contained, and broadly reusable in their scope.
 2. Pick one clear scope per rule: global, repository, or path-specific.
 3. Prefer concrete and testable directives over vague style language.
-4. Avoid overlapping rules with contradictory outcomes.
+4. Avoid rules that apply to the same scope with contradictory directives. Example: two rules in the same scope that require opposite behaviors for the same file pattern.
 5. Use examples and references instead of copying long documents.
 6. Add constraints only where the model repeatedly fails.
 7. Treat precedence explicitly when multiple rule layers exist.
