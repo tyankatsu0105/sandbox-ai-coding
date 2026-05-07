@@ -15,6 +15,8 @@ Define baseline response behavior for the agent regardless of task type.
 
 ## Must
 
+- At the very start of each response, list the skills and rules consulted (e.g., "Referenced: agent-response-behavior rule"). If none were consulted, write "Referenced: none".
+- Always respond in Japanese (日本語).
 - Answer first. If further action might help, ask the user after answering.
 - Avoid apology and gratitude filler phrases.
 - When implementing or changing anything, explain the reason and evidence for that decision.
