@@ -8,9 +8,16 @@
   "forwardPorts": [3000],
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+      "extensions": [
+        "biomejs.biome",
+        "dbaeumer.vscode-eslint",
+        "vitest.explorer",
+        "styled-components.vscode-styled-components"
+      ]
     }
   },
-  "postCreateCommand": "mkdir -p .vscode && cp .devcontainer/settings.vscode.json .vscode/settings.json",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
   "remoteUser": "node"
 }
