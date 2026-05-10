@@ -3,14 +3,14 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [3000],
   "customizations": {
     "vscode": {
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "zsh"
-      },
       "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
     }
   },
-  "postCreateCommand": "npm ci",
+  "postCreateCommand": "mkdir -p .vscode && cp .devcontainer/settings.vscode.json .vscode/settings.json",
   "remoteUser": "node"
 }
