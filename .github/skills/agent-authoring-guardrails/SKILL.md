@@ -8,7 +8,7 @@ description: >-
 # Agent Skill and Rule Authoring Guardrails
 
 Use this skill when you need to create or review guidance for AI coding agents.
-The goal is to make instructions clear, testable, and safe while avoiding noisy or conflicting rules.
+The primary goal is clarity. Secondary goals are testability, safety, and avoiding conflicting rules.
 
 ## When To Use
 
@@ -33,21 +33,25 @@ The goal is to make instructions clear, testable, and safe while avoiding noisy 
 ## Quick Checklist
 
 **Foundation (required first):**
-- Define scope first: what this instruction applies to, and what it does not.
+
+- Define scope first: specify the exact cases this instruction applies to and explicitly list excluded cases.
 - State intent clearly and minimize ambiguity: define terms like "large change", "fast", "safe", "done".
 
 **Clarity (apply next):**
+
 - Prefer explicit triggers: when to invoke the skill or apply the rule.
 - Use action-oriented language: imperative, concrete verbs, no vague guidance.
 - Keep content concise and modular: one file should solve one decision area.
 
 **Verification (ensure quality):**
+
 - Make requirements testable: include success criteria that can be verified.
 - Require verification: add lint, test, or runtime checks where applicable.
 
 **Reliability (resolve conflicts):**
+
 - Keep precedence clear: resolve conflicts between global rules and local exceptions.
-- Avoid tool-specific customization unless the project explicitly mandates it for a particular capability.
+- Avoid customization specific to IDEs or build tools (e.g., VSCode tasks, Webpack loaders) unless explicitly required by the project.
 - Treat generated output files as canonical: never edit synced files directly.
 
 ## Rule Writing Principles
